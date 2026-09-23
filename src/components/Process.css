@@ -1,0 +1,132 @@
+.process-editorial-section {
+  padding: var(--space-24) 0;
+  background-color: var(--color-bg-secondary);
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+.process-title {
+  margin-top: var(--space-4);
+  margin-bottom: var(--space-4);
+  letter-spacing: -0.025em;
+  color: var(--color-text-primary);
+}
+
+.process-subtitle {
+  color: var(--color-text-secondary);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Timeline Layout */
+.process-timeline {
+  position: relative;
+  margin-top: var(--space-16);
+  padding: var(--space-6) 0;
+}
+
+.process-timeline-track {
+  position: absolute;
+  top: 50px;
+  left: 30px;
+  right: 30px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-brand-primary) 0%, var(--color-border-default) 100%);
+  z-index: 1;
+}
+
+.process-steps-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-8);
+  position: relative;
+  z-index: 2;
+}
+
+.process-step-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.process-step-top {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: var(--space-6);
+  position: relative;
+}
+
+.process-step-num {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--color-text-primary);
+  font-family: var(--font-family-primary);
+  letter-spacing: -0.04em;
+  line-height: 1;
+  margin-bottom: var(--space-3);
+}
+
+.process-step-node {
+  width: 14px;
+  height: 14px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-bg-primary);
+  border: 3px solid var(--color-brand-primary);
+  box-shadow: 0 0 0 4px var(--color-bg-secondary);
+}
+
+.process-step-body {
+  display: flex;
+  flex-direction: column;
+}
+
+.process-step-kicker {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-brand-primary);
+  margin-bottom: var(--space-1);
+}
+
+.process-step-heading {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-3);
+}
+
+.process-step-text {
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+}
+
+@media (max-width: 1023px) {
+  .process-timeline-track {
+    display: none;
+  }
+
+  .process-steps-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-10);
+  }
+
+  .process-step-node {
+    display: none;
+  }
+}
+
+@media (max-width: 639px) {
+  .process-editorial-section {
+    padding: var(--space-16) 0;
+  }
+
+  .process-steps-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+
+  .process-step-num {
+    font-size: 24px;
+  }
+}

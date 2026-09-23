@@ -1,0 +1,284 @@
+/* Persistent WebNest Concept Banner for Demo Pages */
+.demo-persistent-banner {
+  background: #090d16;
+  color: #f1f5f9;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  position: relative;
+  z-index: 1000;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.demo-banner-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 8px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.demo-banner-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.demo-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #ffffff;
+  font-weight: 600;
+  text-decoration: none;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  min-height: 36px;
+  transition: background 150ms ease, border-color 150ms ease, transform 120ms ease;
+}
+
+.demo-back-link:hover {
+  background: #2563eb;
+  border-color: #3b82f6;
+  color: #ffffff;
+  transform: translateX(-2px);
+}
+
+.demo-back-link:focus-visible {
+  outline: 2px solid #60a5fa;
+  outline-offset: 2px;
+}
+
+.demo-banner-divider {
+  width: 1px;
+  height: 18px;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.demo-concept-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #94a3b8;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+}
+
+.demo-concept-badge svg {
+  color: #38bdf8;
+}
+
+.demo-switcher-nav {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.demo-switcher-label {
+  color: #64748b;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.demo-switcher-links {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.demo-switcher-pill {
+  color: #cbd5e1;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 5px 10px;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.04);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 120ms ease;
+  min-height: 32px;
+}
+
+.demo-switcher-pill:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+.demo-switcher-pill:focus-visible {
+  outline: 2px solid #60a5fa;
+  outline-offset: 2px;
+}
+
+.demo-switcher-pill.is-active {
+  background: rgba(56, 189, 248, 0.15);
+  border-color: rgba(56, 189, 248, 0.4);
+  color: #38bdf8;
+  font-weight: 600;
+}
+
+.demo-current-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #38bdf8;
+}
+
+@media (max-width: 768px) {
+  .demo-banner-container {
+    padding: 6px 12px;
+    gap: 8px;
+  }
+
+  .demo-switcher-label {
+    display: none;
+  }
+
+  .demo-banner-divider {
+    display: none;
+  }
+
+  .demo-concept-badge {
+    display: none;
+  }
+
+  .demo-switcher-links {
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+
+  .demo-switcher-pill {
+    padding: 4px 8px;
+    font-size: 11px;
+    min-height: 32px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .demo-back-link {
+    transition: none;
+  }
+  .demo-back-link:hover {
+    transform: none;
+  }
+}
+
+/* WebNest Studio Conversion Strip inside Demo Websites (Section 43 & 67) */
+.demo-conversion-strip {
+  background: #090d16;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 48px 24px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.demo-conversion-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.12), rgba(15, 23, 42, 0.6));
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  border-radius: 12px;
+  padding: 32px 36px;
+  flex-wrap: wrap;
+}
+
+.demo-conversion-text {
+  max-width: 680px;
+}
+
+.demo-conversion-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #38bdf8;
+  margin-bottom: 8px;
+}
+
+.demo-conversion-title {
+  font-size: clamp(1.25rem, 2.2vw, 1.75rem);
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.25;
+  margin-bottom: 8px;
+}
+
+.demo-conversion-desc {
+  font-size: 14px;
+  color: #94a3b8;
+  line-height: 1.5;
+}
+
+.demo-conversion-action {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.demo-whatsapp-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #16a34a;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  padding: 12px 24px;
+  border-radius: 6px;
+  text-decoration: none;
+  min-height: 48px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 14px rgba(22, 163, 74, 0.35);
+  transition: background-color 150ms ease, transform 120ms ease;
+}
+
+.demo-whatsapp-btn:hover {
+  background-color: #15803d;
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.demo-whatsapp-btn:focus-visible {
+  outline: 2px solid #22c55e;
+  outline-offset: 3px;
+}
+
+.demo-conversion-subtext {
+  font-size: 11px;
+  color: #94a3b8;
+}
+
+@media (max-width: 768px) {
+  .demo-conversion-inner {
+    padding: 24px 20px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .demo-conversion-action {
+    width: 100%;
+    align-items: stretch;
+  }
+  .demo-whatsapp-btn {
+    justify-content: center;
+  }
+}
+

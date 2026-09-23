@@ -1,0 +1,117 @@
+.problem-editorial-section {
+  padding: var(--space-24) 0;
+  background-color: var(--color-bg-primary);
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+.problem-editorial-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-16);
+  align-items: center;
+}
+
+.problem-narrative {
+  display: flex;
+  flex-direction: column;
+}
+
+.problem-editorial-title {
+  margin-top: var(--space-4);
+  margin-bottom: var(--space-5);
+  letter-spacing: -0.025em;
+  color: var(--color-text-primary);
+}
+
+.problem-editorial-lead {
+  color: var(--color-text-primary);
+  font-weight: 500;
+  margin-bottom: var(--space-4);
+  line-height: 1.6;
+}
+
+.problem-editorial-body {
+  color: var(--color-text-secondary);
+  line-height: 1.65;
+  margin-bottom: var(--space-8);
+}
+
+.problem-editorial-cta {
+  display: flex;
+  align-items: center;
+}
+
+/* Right Column Commitments */
+.problem-commitments {
+  background-color: var(--color-bg-secondary);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-xl);
+  padding: var(--space-10);
+}
+
+.commitments-header {
+  margin-bottom: var(--space-6);
+  padding-bottom: var(--space-4);
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+.commitments-eyebrow {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-brand-primary);
+  display: block;
+  margin-bottom: var(--space-2);
+}
+
+.commitments-title {
+  color: var(--color-text-primary);
+  letter-spacing: -0.015em;
+}
+
+.commitments-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.commitment-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+}
+
+.commitment-icon-wrap {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.commitment-heading {
+  color: var(--color-text-primary);
+  font-size: 16px;
+  font-weight: 650;
+  margin-bottom: 2px;
+}
+
+.commitment-desc {
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+}
+
+@media (max-width: 1023px) {
+  .problem-editorial-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-10);
+  }
+
+  .problem-commitments {
+    padding: var(--space-6);
+  }
+}
+
+@media (max-width: 639px) {
+  .problem-editorial-section {
+    padding: var(--space-16) 0;
+  }
+}

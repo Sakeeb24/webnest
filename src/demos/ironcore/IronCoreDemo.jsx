@@ -202,7 +202,7 @@ export default function IronCoreDemo() {
                 src="https://lh3.googleusercontent.com/aida/AEtjO1VKjydQAGW4GUSpV99j_n7m1mI96iEkWRh7QTEy3UJNSo9Gk3bcjsEed5UfvOCwFW9CeEbA_CmFTKuEGZu7MEJR_AW-hVgZGRZiNORrzYaWQsj7JBM1YqEON00JvSZ2u0K63pttzRM9MOwfBaxyd8zm8NojPggDdUqQ3aFO-7dGsnu_jkYT4JZ8zhvepfRo1nL_yJjQEV_XzU22OE-s_fFhRLiANlOMXRvHLI2uTWcDp0f3ZvXx619NtR4"
                 alt="Athlete performing barbell deadlift training inside IronCore Fitness gym"
                 className="ic-hero-img"
-                onError={(e) => { e.currentTarget.src = '/portfolio/ironcore.jpg'; }}
+                onError={(e) => { e.currentTarget.src = `${import.meta.env.BASE_URL}portfolio/ironcore.jpg`; }}
               />
               <div className="ic-hero-badge">
                 <div>
@@ -340,7 +340,7 @@ export default function IronCoreDemo() {
                   src="https://lh3.googleusercontent.com/aida/AEtjO1U4eyzKSs2CiBVbhkPl3M_NID7SJ79lfOxKVVuPEpY90mL5QGAPYo6j3eNxqC-pOeDI3kgQ-ntKr-k1NG8FYudme1fftnllCuxFj5Fm5iHfa50dCVvRjqwTPus3jlYSLysI6HPPmYm0LJL15CUYZUkQAoL3SN3ri0Z1GRs5nWQYPxNzViiCof8hKru1njQyIJKikm2EOCTZUPj8GB4Cid_6wgp4FjB2cuZ58tg2YyKYGbz71qwxP7CBDWk"
                   alt="State of the art power racks and lifting platforms at IronCore Fitness"
                   className="ic-facilities-img"
-                  onError={(e) => { e.currentTarget.src = '/portfolio/ironcore.jpg'; }}
+                  onError={(e) => { e.currentTarget.src = `${import.meta.env.BASE_URL}portfolio/ironcore.jpg`; }}
                 />
               </div>
 
@@ -400,7 +400,7 @@ export default function IronCoreDemo() {
                     src="https://lh3.googleusercontent.com/aida/AEtjO1UdgCDXo4GapB3P4PsO7GfMD5SrH0u7hkGTf_tZkIbC6cA87-4tc-R4S3V97Ggx997PTyBu7EsZXSLFkiuDJbVVqe9VU4lr4mY9IZZL9McBKHUpwV5CM3FjW4iadojwK0647hzh1btlVXs67UeQj710Ujdly398l_d7IgZJEjH_jvPaND7I1GZxy3WDrKHIAqQaSkLEAAtsSsr4Yh2qA0IwWDcPlWyd4pCILNHZN1LBvUwB30BEkpmMR-E"
                     alt="Arjun Mehta, Head Strength Coach"
                     className="ic-trainer-img"
-                    onError={(e) => { e.currentTarget.src = '/portfolio/ironcore.jpg'; }}
+                    onError={(e) => { e.currentTarget.src = `${import.meta.env.BASE_URL}portfolio/ironcore.jpg`; }}
                   />
                 </div>
                 <div className="ic-trainer-info">
@@ -419,7 +419,7 @@ export default function IronCoreDemo() {
                     src="https://lh3.googleusercontent.com/aida/AEtjO1W3nGv6LcRrGuEUT2jJ0TaCb5ptAvb1byKQeGwAhhH_MnJWutCKbtWULrLMLIQBLcI0jQX2lCniveRYfNArjFjGemr3wvsdsjKcFGsafZ1NWd0xaoDPSvUPEBdja_TTicXSWwGQvIlVaolntSxEOUzheLdo8NW5lCqSDRT8qqlpvL7zUP9x3TjbrJ3dH6QDdVaJ5SxNexeI2YEKY83rwqOe7y2Vr9AJBPj_ilBqPZ5P9rbjBiczV5J-pFA"
                     alt="Priya Sharma, Mobility & Functional Lead"
                     className="ic-trainer-img"
-                    onError={(e) => { e.currentTarget.src = '/portfolio/ironcore.jpg'; }}
+                    onError={(e) => { e.currentTarget.src = `${import.meta.env.BASE_URL}portfolio/ironcore.jpg`; }}
                   />
                 </div>
                 <div className="ic-trainer-info">
@@ -438,7 +438,7 @@ export default function IronCoreDemo() {
                     src="https://lh3.googleusercontent.com/aida/AEtjO1VVgw5CDdWlKV_3xRMZ9qj2duzc0cv64i2SvM9Y9bP8Dt415FUuxHCTRK1IBlWuZWlFAKEVTIZok8A_gz98nKrlkM9vd7-pVUCCOl0wtVl6H7EoFrWn_uViNBTOJG5Der_avpHjFKCasp71V_lC7ZmCfrANtHT7L4jmUhbroOMtCiVrIToyxPVNhX2FvMkPhOOrYJ-G1hrKsEl8o7LUwXRtd7MhUoUNfHntFsLKM3Ctv9hy6RLPC4xqcoI"
                     alt="Rohan Patil, Conditioning & Sprint Coach"
                     className="ic-trainer-img"
-                    onError={(e) => { e.currentTarget.src = '/portfolio/ironcore.jpg'; }}
+                    onError={(e) => { e.currentTarget.src = `${import.meta.env.BASE_URL}portfolio/ironcore.jpg`; }}
                   />
                 </div>
                 <div className="ic-trainer-info">

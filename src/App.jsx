@@ -25,7 +25,7 @@ import './components/Footer.css';
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/webnest">
       {/* Scroll restoration helper: resets scroll to top or jumps to hash anchor on route changes */}
       <ScrollToTop />
 

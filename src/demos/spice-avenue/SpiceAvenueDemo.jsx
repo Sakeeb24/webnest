@@ -249,7 +249,7 @@ export default function SpiceAvenueDemo() {
                 src="https://lh3.googleusercontent.com/aida/AEtjO1VZ4GvamcbQ00UI8qGbzItOxduD2Hw4FdtpxaTj4ROt14hP1poK6v7Nn7O__aZvtpNm0vWu_EbbrNeondje4Q3oFLYlNj9Oj8694ZBQheG0Ty4cTzv6fWrf5Eks-K4t5K5SNvkTZl1K_JBvKuwQlkJ_2Q9V036de6H101wksSqbd5DmiomVMKiymHD-6UTsdmWFlrsETeKGwUG-ZQ1UuNwD7LL7IZTqPMSv9jyMlRE74WFwX_3-1Ua-a6Ec"
                 alt="Intimate candlelit dining salon at Spice Avenue restaurant"
                 className="sa-hero-img"
-                onError={(e) => { e.currentTarget.src = '/portfolio/spice-avenue.jpg'; }}
+                onError={(e) => { e.currentTarget.src = `${import.meta.env.BASE_URL}portfolio/spice-avenue.jpg`; }}
               />
               <div className="sa-hero-card-meta">
                 <div className="sa-hero-card-title">Evening Service at The Main Salon</div>
@@ -299,7 +299,7 @@ export default function SpiceAvenueDemo() {
                     src="https://lh3.googleusercontent.com/aida/AEtjO1WieK__gnlSU7oybIPkh7KYL-4iwG4SDCeOHXKxhVcJslWM74XTc0E81SJdOQHtlIQ_zaATClUoauFasJeITPwkMvZ64zkKJmXy30S2YI4KD9IC9q9mIlk2asEXWlA1jj8FiNarVN6_nRNZ8o0n3Mj_cJKVjYK3iQ0boGrWFBYcVO2NF-zG8Fm2u06TBReVV-1rRRGc7uU5ILCXEyCpYTSAjHIrAizvV1wn-UHJJ23ptsbA43-YkegyBFTL"
                     alt="Saffron Lobster Tagliatelle on dark artisan ceramic plate"
                     className="sa-dish-img"
-                    onError={(e) => { e.currentTarget.src = '/portfolio/spice-avenue.jpg'; }}
+                    onError={(e) => { e.currentTarget.src = `${import.meta.env.BASE_URL}portfolio/spice-avenue.jpg`; }}
                   />
                   <span className="sa-dish-badge">Signature Course</span>
                 </div>
@@ -326,7 +326,7 @@ export default function SpiceAvenueDemo() {
                     src="https://lh3.googleusercontent.com/aida/AEtjO1VEPrPHuHw41NAZf2K5zXcLMY3vtsFe4DrS6j77f7qnX4mfkst8xii-PV7X-tR5y68Dnhg-HRcz99lL1gRpEUWtpiR_IXe4gPKNqjZPs2xoDlxUMXDMp2n6QeGdLgfSk2wzuXTZg_GRsgugZg6G8EwhdE1axTbkCJelDGXeY6pw_YpkARAP6xIVyd9Usspvgxx2i6ZT_mnDYnVKedjkbEpcLKok53Y7yfjmKsK9Zx_ceV4fYKNElW5aQW4"
                     alt="Herb-crusted rack of lamb with dark red wine reduction"
                     className="sa-dish-img"
-                    onError={(e) => { e.currentTarget.src = '/portfolio/spice-avenue.jpg'; }}
+                    onError={(e) => { e.currentTarget.src = `${import.meta.env.BASE_URL}portfolio/spice-avenue.jpg`; }}
                   />
                   <span className="sa-dish-badge">Seasonal Feature</span>
                 </div>
@@ -353,7 +353,7 @@ export default function SpiceAvenueDemo() {
                     src="https://lh3.googleusercontent.com/aida/AEtjO1X2OmsIzv7BQq5e38Wd-b5xv54F03JrKunsJ9XtjKLkE2UWs-7m7yqLJWNpjYNVh0R7Viu9H0iqPrtRsvUNOtATjXEGed9cFVPrq1x3msvrsbK3K4S4-KqVuUGYzDnbGLVEND1E5dh59C2foL-iJA7oDHl6ipYuT9qU6DikaK3gsy6dEELAARuLk0rpusXhWO2b6Gl3WFFQIk9eDEtk5FXnMtFsu4cyTtUak_jAYOQM_XoCSn1IpsxxQMhk"
                     alt="Cardamom Chocolate Dome with spun sugar and gold dust"
                     className="sa-dish-img"
-                    onError={(e) => { e.currentTarget.src = '/portfolio/spice-avenue.jpg'; }}
+                    onError={(e) => { e.currentTarget.src = `${import.meta.env.BASE_URL}portfolio/spice-avenue.jpg`; }}
                   />
                   <span className="sa-dish-badge">Dessert Showcase</span>
                 </div>
@@ -458,7 +458,7 @@ export default function SpiceAvenueDemo() {
                   src="https://lh3.googleusercontent.com/aida/AEtjO1Xi62iiUASLUJvAnKsVZtSdKg47Jlo14OzZKmArZucQ4rwQ9Yhzg-Kh2ZjJVRDO0gFxbP1QcSsbwbYklBqXfTOCznjF_2k_RNZ-gAVVtAJY3Z6noKWHY4DxAI5l_znuD2PbZMtbvEcDmOs6tSoaP23fURK0At7ZemuRiL1nH3pOmshtuhhqy--lGLF-O1d_0e713-Q0Ox2ScUFczpXTE0cKtV3tS_SOQ_5yObJAgJUXJ_We0mQMB4McRYUZ"
                   alt="Executive Chef Antoine Dubois garnishing a dish in open kitchen"
                   className="sa-chef-img"
-                  onError={(e) => { e.currentTarget.src = '/portfolio/spice-avenue.jpg'; }}
+                  onError={(e) => { e.currentTarget.src = `${import.meta.env.BASE_URL}portfolio/spice-avenue.jpg`; }}
                 />
               </div>
 

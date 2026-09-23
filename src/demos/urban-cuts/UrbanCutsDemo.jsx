@@ -219,7 +219,7 @@ export default function UrbanCutsDemo() {
                 src="https://lh3.googleusercontent.com/aida/AEtjO1UrnVlHYKOByBkZF1kMEMGavtJGWF0diqd_KKyosr_yW05YR6CSazJ6CQN4S_WXVEUDAFDg6pTBAKFOAu8NvNvfyGP-i73cj3RRe6pyP7MsumugqAXofKv2ykDn-3j4B3D1iOXIVXkBFa99cp-FtIukRoLbUIRCFKNa1BTQOTtqU0_0zlsGypz86cj8yX4GbHT3lpYBAGPvrduLzoaL0T2ZaccQn5Y_0M230KU-J-TxWwTrGPF_h7mfCXlS"
                 alt="Urban Cuts travertine stone interior with brass mirrors and leather chairs"
                 className="uc-hero-img"
-                onError={(e) => { e.currentTarget.src = '/portfolio/urban-cuts.jpg'; }}
+                onError={(e) => { e.currentTarget.src = `${import.meta.env.BASE_URL}portfolio/urban-cuts.jpg`; }}
               />
               <div className="uc-hero-badge">
                 <div className="uc-hero-badge-title">The Atelier Sanctuary</div>

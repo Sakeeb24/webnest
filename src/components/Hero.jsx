@@ -84,7 +84,7 @@ export default function Hero({ onOpenEnquiry: _onOpenEnquiry = () => {} }) {
               {/* Mockup screen preview */}
               <div className="mockup-screen">
                 <img
-                  src="/portfolio/ironcore.jpg"
+                  src={`${import.meta.env.BASE_URL}portfolio/ironcore.jpg`}
                   alt="IronCore Fitness concept preview"
                   className="mockup-image"
                   loading="eager"
@@ -105,7 +105,7 @@ export default function Hero({ onOpenEnquiry: _onOpenEnquiry = () => {} }) {
               </div>
               <div className="hero-mobile-screen">
                 <img
-                  src="/portfolio/spice-avenue.jpg"
+                  src={`${import.meta.env.BASE_URL}portfolio/spice-avenue.jpg`}
                   alt="Spice Avenue mobile concept preview"
                   className="hero-mobile-img"
                   loading="eager"

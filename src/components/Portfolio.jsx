@@ -15,7 +15,7 @@ export default function Portfolio({ onOpenEnquiry }) {
       category: 'Gym Website',
       businessType: 'Strength & Conditioning Facility',
       route: '/demo/ironcore',
-      image: '/portfolio/ironcore.jpg',
+      image: `${import.meta.env.BASE_URL}portfolio/ironcore.jpg`,
       headline: 'A performance-focused gym website built around strong typography, membership presentation, and qualified lead conversion.',
       fullDescription: 'Designed for a high-intensity boutique training facility. The structure prioritizes easy schedule exploration, trainer credentials, membership plan comparisons, and a frictionless membership enquiry workflow.',
       features: [
@@ -32,7 +32,7 @@ export default function Portfolio({ onOpenEnquiry }) {
       category: 'Restaurant Website',
       businessType: 'Modern Italian & Contemporary Dining',
       route: '/demo/spice-avenue',
-      image: '/portfolio/spice-avenue.jpg',
+      image: `${import.meta.env.BASE_URL}portfolio/spice-avenue.jpg`,
       headline: 'A warm, editorial dining website featuring sensory food photography, digital menus, and table reservation enquiries.',
       fullDescription: 'Crafted for an upscale dining establishment to make table enquiries and menu browsing delightful on mobile screens. Built with warm ambient tones, allergen flags, and direct Google Maps routing.',
       features: [
@@ -49,7 +49,7 @@ export default function Portfolio({ onOpenEnquiry }) {
       category: 'Salon Website',
       businessType: 'Modern Grooming & Hair Studio',
       route: '/demo/urban-cuts',
-      image: '/portfolio/urban-cuts.jpg',
+      image: `${import.meta.env.BASE_URL}portfolio/urban-cuts.jpg`,
       headline: 'An editorial salon website with architectural travertine styling, transparent rate cards, and stylist scheduling.',
       fullDescription: 'Engineered for a modern boutique grooming studio. Emphasizes visual style consistency, transparent pricing tables, stylist portfolios, and interactive appointment scheduling.',
       features: [

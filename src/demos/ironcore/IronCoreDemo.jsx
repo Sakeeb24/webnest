@@ -14,7 +14,8 @@ import {
   Menu,
   X,
   ArrowRight,
-  MessageCircle
+  MessageCircle,
+  MessageSquare
 } from 'lucide-react';
 import DemoHeader from '../common/DemoHeader';
 import { BUSINESS_CONFIG, createWhatsAppLink } from '../../config/business';
@@ -826,18 +827,18 @@ export default function IronCoreDemo() {
 
             {membershipSubmitted ? (
               <div style={{ textAlign: 'center', padding: '20px 0' }}>
-                <div style={{ width: '56px', height: '56px', borderRadius: '50%', background: 'rgba(5, 150, 105, 0.2)', color: '#10b981', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 16px' }}>
-                  <Check size={32} />
+                <div style={{ width: '56px', height: '56px', borderRadius: '50%', background: 'rgba(56, 189, 248, 0.15)', color: '#38bdf8', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 16px' }}>
+                  <MessageSquare size={28} />
                 </div>
-                <h3 style={{ fontSize: '22px', fontWeight: '800', color: '#ffffff', marginBottom: '8px' }}>
-                  Enquiry Submitted
+                <h3 id="membership-modal-title" style={{ fontSize: '22px', fontWeight: '800', color: '#ffffff', marginBottom: '8px' }}>
+                  Membership Enquiry Ready
                 </h3>
                 <p style={{ color: '#94a3b8', fontSize: '14px', lineHeight: '1.6', marginBottom: '16px' }}>
-                  Thank you for testing the interactive membership flow for <strong>{selectedPlan}</strong>. This is a WebNest portfolio demonstration showcasing how an automated membership enquiry system functions for a modern fitness facility.
+                  Your membership enquiry for {selectedPlan || 'Athletic Pro (₹3,499/mo)'} is ready to continue.
                 </p>
                 <div className="ic-demo-form-alert" style={{ textAlign: 'left', marginBottom: '20px' }}>
                   <div style={{ fontWeight: '700', color: '#38bdf8', marginBottom: '4px' }}>WebNest Portfolio Demonstration</div>
-                  <div>WebNest Concept Demo — This interaction demonstrates how a real gym website could handle membership enquiries. No membership, payment, or booking is actually created.</div>
+                  <div>This interactive demo shows how a real gym website could handle membership enquiries. No membership, payment, or booking is actually created.</div>
                 </div>
 
                 {/* Subtle WebNest Conversion CTA */}
@@ -846,7 +847,7 @@ export default function IronCoreDemo() {
                     Want a website like this?
                   </p>
                   <p style={{ fontSize: '12px', color: '#94a3b8', marginBottom: '12px' }}>
-                    WebNest designs and launches high-converting websites for businesses.
+                    WebNest designs and launches professional websites for businesses.
                   </p>
                   <a
                     href={createWhatsAppLink(BUSINESS_CONFIG.messages.ironcore)}

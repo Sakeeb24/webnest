@@ -37,7 +37,7 @@ export default function Footer() {
               <li><a href="#top" className="footer-link">Home</a></li>
               <li><a href="#services" className="footer-link">Services</a></li>
               <li><a href="#work" className="footer-link">Work</a></li>
-              <li><a href="#pricing" className="footer-link">Pricing</a></li>
+              <li><a href="#packages" className="footer-link">Packages</a></li>
               <li><a href="#process" className="footer-link">Process</a></li>
               <li><a href="#team" className="footer-link">Team</a></li>
               <li><a href="#contact" className="footer-link">Contact</a></li>

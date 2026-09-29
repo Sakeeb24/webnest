@@ -1,14 +1,22 @@
 import React from 'react';
 import { ArrowRight, MessageCircle, Sparkles } from 'lucide-react';
+import { motion, useReducedMotion } from 'motion/react';
 import { BUSINESS_CONFIG, createWhatsAppLink } from '../config/business';
 
 export default function FinalCTA({ onOpenEnquiry: _onOpenEnquiry = () => {} }) {
   const whatsappUrl = createWhatsAppLink(BUSINESS_CONFIG.messages.main);
+  const shouldReduceMotion = useReducedMotion();
 
   return (
     <section className="section final-cta-section" aria-labelledby="final-cta-heading">
       <div className="container">
-        <div className="final-cta-card">
+        <motion.div
+          className="final-cta-card"
+          initial={shouldReduceMotion ? false : { opacity: 0, y: 28 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-40px' }}
+          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+        >
           <div className="final-cta-badge">
             <Sparkles size={14} aria-hidden="true" />
             <span>Start Today</span>
@@ -32,7 +40,7 @@ export default function FinalCTA({ onOpenEnquiry: _onOpenEnquiry = () => {} }) {
               aria-label="Get Your Website on WhatsApp"
             >
               <span>Get Your Website</span>
-              <ArrowRight size={18} aria-hidden="true" />
+              <ArrowRight size={18} aria-hidden="true" className="arrow-icon" />
             </a>
 
             {/* Secondary CTA: WhatsApp Us */}
@@ -47,7 +55,7 @@ export default function FinalCTA({ onOpenEnquiry: _onOpenEnquiry = () => {} }) {
               <span>WhatsApp Us</span>
             </a>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

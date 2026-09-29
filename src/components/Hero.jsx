@@ -1,30 +1,75 @@
 import React from 'react';
 import { ArrowRight, CheckCircle2, Zap, MessageCircle } from 'lucide-react';
+import { motion, useReducedMotion } from 'motion/react';
 import { BUSINESS_CONFIG, createWhatsAppLink } from '../config/business';
 
 export default function Hero({ onOpenEnquiry: _onOpenEnquiry = () => {} }) {
   const whatsappHeroUrl = createWhatsAppLink(BUSINESS_CONFIG.messages.hero);
+  const shouldReduceMotion = useReducedMotion();
+
+  // Entrance variants
+  const fadeInVariants = {
+    hidden: shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 },
+    visible: (customDelay = 0) => ({
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+        delay: shouldReduceMotion ? 0 : customDelay,
+        ease: [0.22, 1, 0.36, 1],
+      },
+    }),
+  };
 
   return (
     <section className="hero-section" id="top" aria-labelledby="hero-heading">
       <div className="container">
         <div className="hero-grid">
-          {/* Hero Content */}
+          {/* Hero Content Column */}
           <div className="hero-content">
-            <div className="hero-badge hero-animate-eyebrow">
+            {/* 1. Small eyebrow/label fades upward */}
+            <motion.div
+              className="hero-badge"
+              custom={0.05}
+              initial="hidden"
+              animate="visible"
+              variants={fadeInVariants}
+            >
               <span className="badge-dot" aria-hidden="true" />
               <span>Two-Person Modern Web Studio</span>
-            </div>
+            </motion.div>
 
-            <h1 id="hero-heading" className="hero-title display-lg hero-animate-title">
+            {/* 2. Main heading reveals upward */}
+            <motion.h1
+              id="hero-heading"
+              className="hero-title display-lg"
+              custom={0.16}
+              initial="hidden"
+              animate="visible"
+              variants={fadeInVariants}
+            >
               Build Your Business Online.
-            </h1>
+            </motion.h1>
 
-            <p className="hero-description body-lg hero-animate-desc">
+            {/* 3. Supporting text follows */}
+            <motion.p
+              className="hero-description body-lg"
+              custom={0.26}
+              initial="hidden"
+              animate="visible"
+              variants={fadeInVariants}
+            >
               Modern, fast and professional websites designed for businesses that want more customers.
-            </p>
+            </motion.p>
 
-            <div className="hero-actions hero-animate-actions">
+            {/* 4. CTA buttons appear shortly afterward */}
+            <motion.div
+              className="hero-actions"
+              custom={0.36}
+              initial="hidden"
+              animate="visible"
+              variants={fadeInVariants}
+            >
               {/* Primary CTA: WhatsApp direct enquiry flow */}
               <a
                 href={whatsappHeroUrl}
@@ -34,19 +79,25 @@ export default function Hero({ onOpenEnquiry: _onOpenEnquiry = () => {} }) {
                 aria-label="Get Your Website - Start a conversation on WhatsApp"
               >
                 <span>Get Your Website</span>
-                <ArrowRight size={18} aria-hidden="true" />
+                <ArrowRight size={18} aria-hidden="true" className="arrow-icon" />
               </a>
 
               <a href="#work" className="btn btn-secondary btn-lg">
                 <span>View Our Work</span>
               </a>
-            </div>
+            </motion.div>
 
-            {/* Micro value reassurance & WhatsApp contact notice */}
-            <div className="hero-micro-reassurance hero-animate-reassurance">
+            {/* 5. Micro-reassurance items (Strictly NO prices) */}
+            <motion.div
+              className="hero-micro-reassurance"
+              custom={0.46}
+              initial="hidden"
+              animate="visible"
+              variants={fadeInVariants}
+            >
               <div className="reassurance-item">
                 <CheckCircle2 size={16} className="text-brand" aria-hidden="true" />
-                <span>Starts at ₹4,999</span>
+                <span>Founder-Crafted Quality</span>
               </div>
               <div className="reassurance-item">
                 <CheckCircle2 size={16} className="text-brand" aria-hidden="true" />
@@ -56,12 +107,33 @@ export default function Hero({ onOpenEnquiry: _onOpenEnquiry = () => {} }) {
                 <MessageCircle size={16} className="text-brand" aria-hidden="true" />
                 <span>WhatsApp Direct Line</span>
               </div>
-            </div>
+            </motion.div>
           </div>
 
-          {/* Hero Visual: Layered browser & mobile preview */}
-          <div className="hero-visual hero-animate-visual" aria-hidden="true">
-            <div className="mockup-frame hero-mockup-float">
+          {/* 6. Hero Visual: Layered browser & mobile preview with subtle scale/opacity & floating */}
+          <motion.div
+            className="hero-visual"
+            initial={shouldReduceMotion ? false : { opacity: 0, scale: 0.96, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 0.65, delay: shouldReduceMotion ? 0 : 0.28, ease: [0.22, 1, 0.36, 1] }}
+            aria-hidden="true"
+          >
+            {/* Desktop Mockup Frame with subtle floating effect */}
+            <motion.div
+              className="mockup-frame"
+              animate={
+                shouldReduceMotion
+                  ? undefined
+                  : {
+                      y: [0, -6, 0],
+                      transition: {
+                        duration: 6,
+                        repeat: Infinity,
+                        ease: 'easeInOut',
+                      },
+                    }
+              }
+            >
               {/* Browser chrome header */}
               <div className="mockup-chrome">
                 <div className="mockup-dots">
@@ -96,10 +168,25 @@ export default function Hero({ onOpenEnquiry: _onOpenEnquiry = () => {} }) {
                   <span>Engineered by WebNest</span>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
             {/* Floating Mobile Companion Card */}
-            <div className="hero-mobile-float">
+            <motion.div
+              className="hero-mobile-float"
+              animate={
+                shouldReduceMotion
+                  ? undefined
+                  : {
+                      y: [0, -8, 0],
+                      transition: {
+                        duration: 5.2,
+                        repeat: Infinity,
+                        ease: 'easeInOut',
+                        delay: 0.6,
+                      },
+                    }
+              }
+            >
               <div className="hero-mobile-chrome">
                 <span className="hero-mobile-notch" />
               </div>
@@ -114,8 +201,8 @@ export default function Hero({ onOpenEnquiry: _onOpenEnquiry = () => {} }) {
                   <span>Spice Avenue · Mobile UX</span>
                 </div>
               </div>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
       </div>
     </section>

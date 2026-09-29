@@ -1,8 +1,11 @@
 import React from 'react';
 import { HeartHandshake } from 'lucide-react';
+import { motion, useReducedMotion } from 'motion/react';
 import './WhyWebNest.css';
 
 export default function WhyWebNest() {
+  const shouldReduceMotion = useReducedMotion();
+
   const principles = [
     {
       num: '01',
@@ -26,8 +29,8 @@ export default function WhyWebNest() {
     },
     {
       num: '05',
-      title: 'Transparent Pricing',
-      description: 'Clear, honest starting packages with zero hidden fees, locking contracts, or unexpected recurring subscription traps.'
+      title: 'Clear Scope & Milestones',
+      description: 'Well-defined deliverables with zero ambiguity, locking contracts, or unexpected recurring subscription traps.'
     },
     {
       num: '06',
@@ -40,7 +43,13 @@ export default function WhyWebNest() {
     <section className="section why-editorial-section" id="why" aria-labelledby="why-heading">
       <div className="container">
         {/* Section Header */}
-        <div className="section-header text-center reveal-init">
+        <motion.div
+          className="section-header text-center"
+          initial={shouldReduceMotion ? false : { opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-40px' }}
+          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+        >
           <div className="section-badge">
             <HeartHandshake size={14} aria-hidden="true" />
             <span>Studio Principles</span>
@@ -51,16 +60,27 @@ export default function WhyWebNest() {
           <p className="body-lg why-editorial-sub">
             We are an independent two-person web studio. We focus on craft, performance, and commercial utility for real businesses.
           </p>
-        </div>
+        </motion.div>
 
-        {/* Editorial Feature Grid (No heavy cards) */}
+        {/* Editorial Feature Grid */}
         <div className="why-principles-grid">
           {principles.map((p, idx) => (
-            <div key={p.num} className={`why-principle-item reveal-init stagger-${(idx % 3) + 1}`}>
+            <motion.div
+              key={p.num}
+              className="why-principle-item"
+              initial={shouldReduceMotion ? false : { opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-40px' }}
+              transition={{
+                duration: 0.5,
+                delay: shouldReduceMotion ? 0 : (idx % 3) * 0.1,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+            >
               <span className="why-principle-num" aria-hidden="true">{p.num}</span>
               <h3 className="heading-sm why-principle-title">{p.title}</h3>
               <p className="body-sm why-principle-desc">{p.description}</p>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

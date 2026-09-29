@@ -1,8 +1,11 @@
 import React from 'react';
 import { ListOrdered } from 'lucide-react';
+import { motion, useReducedMotion } from 'motion/react';
 import './Process.css';
 
 export default function Process() {
+  const shouldReduceMotion = useReducedMotion();
+
   const steps = [
     {
       num: '01',
@@ -34,7 +37,13 @@ export default function Process() {
     <section className="section process-editorial-section" id="process" aria-labelledby="process-heading">
       <div className="container">
         {/* Header */}
-        <div className="section-header text-center reveal-init">
+        <motion.div
+          className="section-header text-center"
+          initial={shouldReduceMotion ? false : { opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-40px' }}
+          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+        >
           <div className="section-badge">
             <ListOrdered size={14} aria-hidden="true" />
             <span>Workflow</span>
@@ -45,7 +54,7 @@ export default function Process() {
           <p className="body-lg process-subtitle">
             No endless meetings, no technical jargon. A structured 4-step path to getting your business online.
           </p>
-        </div>
+        </motion.div>
 
         {/* Editorial Linear Roadmap */}
         <div className="process-timeline">
@@ -53,7 +62,18 @@ export default function Process() {
           
           <div className="process-steps-grid">
             {steps.map((st, idx) => (
-              <div key={st.num} className={`process-step-item reveal-init stagger-${idx + 1}`}>
+              <motion.div
+                key={st.num}
+                className="process-step-item"
+                initial={shouldReduceMotion ? false : { opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-40px' }}
+                transition={{
+                  duration: 0.5,
+                  delay: shouldReduceMotion ? 0 : idx * 0.1,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
+              >
                 <div className="process-step-top">
                   <span className="process-step-num" aria-label={`Step ${st.num}`}>{st.num}</span>
                   <span className="process-step-node" aria-hidden="true" />
@@ -64,7 +84,7 @@ export default function Process() {
                   <h3 className="heading-md process-step-heading">{st.title}</h3>
                   <p className="body-sm process-step-text">{st.description}</p>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>

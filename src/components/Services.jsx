@@ -1,9 +1,12 @@
 import React from 'react';
 import { ArrowRight, Sparkles } from 'lucide-react';
+import { motion, useReducedMotion } from 'motion/react';
 import { BUSINESS_CONFIG, createWhatsAppLink } from '../config/business';
 import './Services.css';
 
 export default function Services({ onOpenEnquiry }) {
+  const shouldReduceMotion = useReducedMotion();
+
   const capabilities = [
     {
       num: '01',
@@ -50,7 +53,13 @@ export default function Services({ onOpenEnquiry }) {
       <div className="container">
         <div className="services-editorial-layout">
           {/* Left Column: Sticky Editorial Introduction */}
-          <div className="services-sticky-sidebar reveal-init">
+          <motion.div
+            className="services-sticky-sidebar"
+            initial={shouldReduceMotion ? false : { opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-40px' }}
+            transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+          >
             <div className="section-badge">
               <Sparkles size={14} aria-hidden="true" />
               <span>Studio Capabilities</span>
@@ -73,20 +82,28 @@ export default function Services({ onOpenEnquiry }) {
                 aria-label={`Discuss your website requirement on WhatsApp at ${BUSINESS_CONFIG.whatsapp.displayNumber}`}
               >
                 <span>Discuss Your Project</span>
-                <ArrowRight size={16} aria-hidden="true" />
+                <ArrowRight size={16} aria-hidden="true" className="arrow-icon" />
               </a>
               <span className="services-cta-subtext">
                 Direct founder response · {BUSINESS_CONFIG.whatsapp.displayNumber}
               </span>
             </div>
-          </div>
+          </motion.div>
 
           {/* Right Column: Editorial Numbered Capability Rows */}
           <div className="services-capabilities-list">
             {capabilities.map((cap, idx) => (
-              <article
+              <motion.article
                 key={cap.num}
-                className={`capability-row reveal-init stagger-${(idx % 3) + 1}`}
+                className="capability-row"
+                initial={shouldReduceMotion ? false : { opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-40px' }}
+                transition={{
+                  duration: 0.5,
+                  delay: shouldReduceMotion ? 0 : (idx % 3) * 0.08,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
               >
                 <div className="capability-num" aria-hidden="true">
                   {cap.num}
@@ -102,7 +119,7 @@ export default function Services({ onOpenEnquiry }) {
                       aria-label={`Enquire about ${cap.title}`}
                     >
                       <span>Enquire</span>
-                      <ArrowRight size={15} aria-hidden="true" />
+                      <ArrowRight size={15} aria-hidden="true" className="arrow-icon" />
                     </button>
                   </div>
 
@@ -118,7 +135,7 @@ export default function Services({ onOpenEnquiry }) {
                     ))}
                   </div>
                 </div>
-              </article>
+              </motion.article>
             ))}
           </div>
         </div>

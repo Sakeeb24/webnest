@@ -1,7 +1,10 @@
 import React from 'react';
-import { Smartphone, Palette, Clock, BadgePercent } from 'lucide-react';
+import { Smartphone, Palette, Clock, ShieldCheck } from 'lucide-react';
+import { motion, useReducedMotion } from 'motion/react';
 
 export default function TrustStrip() {
+  const shouldReduceMotion = useReducedMotion();
+
   const values = [
     {
       icon: <Smartphone size={20} className="trust-icon" aria-hidden="true" />,
@@ -19,9 +22,9 @@ export default function TrustStrip() {
       description: 'From initial briefing to live deployment in days'
     },
     {
-      icon: <BadgePercent size={20} className="trust-icon" aria-hidden="true" />,
-      title: 'Affordable Pricing',
-      description: 'Transparent flat packages with zero hidden fees'
+      icon: <ShieldCheck size={20} className="trust-icon" aria-hidden="true" />,
+      title: 'Clear Deliverables',
+      description: 'Defined package scopes, fast timelines, and direct founder execution'
     }
   ];
 
@@ -30,7 +33,18 @@ export default function TrustStrip() {
       <div className="container">
         <div className="trust-strip-grid">
           {values.map((val, idx) => (
-            <div key={idx} className={`trust-item reveal-init stagger-${idx + 1}`}>
+            <motion.div
+              key={idx}
+              className="trust-item"
+              initial={shouldReduceMotion ? false : { opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-30px' }}
+              transition={{
+                duration: 0.45,
+                delay: shouldReduceMotion ? 0 : idx * 0.08,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+            >
               <div className="trust-icon-wrapper">
                 {val.icon}
               </div>
@@ -38,7 +52,7 @@ export default function TrustStrip() {
                 <h2 className="trust-title">{val.title}</h2>
                 <p className="trust-desc">{val.description}</p>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

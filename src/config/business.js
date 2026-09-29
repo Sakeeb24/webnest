@@ -37,13 +37,13 @@ export const BUSINESS_CONFIG = {
   // Context-Aware Pre-filled WhatsApp Messages (Section 9, 55, 59)
   messages: {
     // Default general enquiry
-    default: "Hi WebNest, I'm interested in getting a website for my business. I'd like to know more about your services and pricing.",
+    default: "Hi WebNest, I'm interested in getting a website for my business. I'd like to know more about your services and packages.",
     
     // Hero CTA
     hero: "Hi WebNest, I'm interested in getting a website for my business.",
     
     // Main "Get Your Website" CTA
-    main: "Hi WebNest, I'm interested in getting a website for my business. I'd like to know more about your services and pricing.",
+    main: "Hi WebNest, I'm interested in getting a website for my business. I'd like to know more about your services and packages.",
     
     // Starter Plan
     starter: "Hi WebNest, I'm interested in the Starter website package. I'd like to know more.",

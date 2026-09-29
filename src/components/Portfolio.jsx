@@ -1,18 +1,20 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, ExternalLink, Info, Layers, Check } from 'lucide-react';
+import { motion, useReducedMotion } from 'motion/react';
 import ProjectModal from './ProjectModal';
 import './Portfolio.css';
 
-export default function Portfolio({ onOpenEnquiry }) {
+export default function Portfolio({ onOpenEnquiry = () => {} }) {
   const [selectedProject, setSelectedProject] = useState(null);
+  const shouldReduceMotion = useReducedMotion();
 
   const projects = [
     {
       id: 'ironcore',
       title: 'IronCore Fitness',
       kicker: 'Fitness & Strength Club',
-      category: 'Gym Website',
+      category: 'Fitness Website Concept',
       businessType: 'Strength & Conditioning Facility',
       route: '/demo/ironcore',
       image: `${import.meta.env.BASE_URL}portfolio/ironcore.jpg`,
@@ -29,7 +31,7 @@ export default function Portfolio({ onOpenEnquiry }) {
       id: 'spice-avenue',
       title: 'Spice Avenue',
       kicker: 'Artisan Contemporary Dining',
-      category: 'Restaurant Website',
+      category: 'Restaurant Website Concept',
       businessType: 'Modern Italian & Contemporary Dining',
       route: '/demo/spice-avenue',
       image: `${import.meta.env.BASE_URL}portfolio/spice-avenue.jpg`,
@@ -46,17 +48,34 @@ export default function Portfolio({ onOpenEnquiry }) {
       id: 'urban-cuts',
       title: 'Urban Cuts',
       kicker: 'Editorial Grooming Atelier',
-      category: 'Salon Website',
+      category: 'Salon Website Concept',
       businessType: 'Modern Grooming & Hair Studio',
       route: '/demo/urban-cuts',
       image: `${import.meta.env.BASE_URL}portfolio/urban-cuts.jpg`,
-      headline: 'An editorial salon website with architectural travertine styling, transparent rate cards, and stylist scheduling.',
-      fullDescription: 'Engineered for a modern boutique grooming studio. Emphasizes visual style consistency, transparent pricing tables, stylist portfolios, and interactive appointment scheduling.',
+      headline: 'An editorial salon website with architectural travertine styling, clear service cards, and stylist scheduling.',
+      fullDescription: 'Engineered for a modern boutique grooming studio. Emphasizes visual style consistency, transparent service menus, stylist portfolios, and interactive appointment scheduling.',
       features: [
-        'Clear haircut, styling & grooming price sheets',
+        'Clear haircut, styling & grooming service lists',
         'Stylist lookbook gallery with portfolio previews',
         'Mobile-first appointment scheduling module',
         'Operating schedule with real-time status'
+      ]
+    },
+    {
+      id: 'only-fish',
+      title: 'Only Fish',
+      kicker: 'Coastal Seafood Restaurant',
+      category: 'Seafood Restaurant Website Concept',
+      businessType: 'Seafood Restaurant • Dharwad',
+      route: '/demo/only-fish',
+      image: `${import.meta.env.BASE_URL}portfolio/only-fish.svg`,
+      headline: 'A dedicated restaurant website concept designed around menu, food and dining experience.',
+      fullDescription: 'Crafted for a local coastal seafood restaurant in Dharwad. Prioritizes fresh catch showcases, regional fish thalis, direct WhatsApp communication, and clear location directions without complex ordering apps.',
+      features: [
+        'Curated coastal seafood & regional thali menu',
+        'Direct WhatsApp contact with restaurant',
+        'Google Maps location routing for Dharwad diners',
+        'Clear Dine-in, Takeaway & No-Contact delivery options'
       ]
     }
   ];
@@ -65,7 +84,13 @@ export default function Portfolio({ onOpenEnquiry }) {
     <section className="section portfolio-showcase-section" id="work" aria-labelledby="portfolio-heading">
       <div className="container">
         {/* Section Header */}
-        <div className="section-header text-center reveal-init">
+        <motion.div
+          className="section-header text-center"
+          initial={shouldReduceMotion ? false : { opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-40px' }}
+          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+        >
           <div className="section-badge">
             <Layers size={14} aria-hidden="true" />
             <span>Interactive Portfolio</span>
@@ -76,17 +101,31 @@ export default function Portfolio({ onOpenEnquiry }) {
           <p className="body-lg portfolio-heading-desc">
             Experience our work firsthand. Click <strong>View Demo</strong> to test complete, interactive websites crafted for real-world commercial scenarios.
           </p>
-        </div>
+        </motion.div>
 
-        {/* Case Studies Stacked Showcase */}
+        {/* Large Editorial Project Previews */}
         <div className="case-studies-list">
           {projects.map((proj, idx) => (
-            <article
+            <motion.article
               key={proj.id}
-              className={`case-study-item ${idx % 2 !== 0 ? 'is-reversed' : ''} reveal-init stagger-${idx + 1}`}
+              className={`case-study-item ${idx % 2 !== 0 ? 'is-reversed' : ''}`}
+              initial={shouldReduceMotion ? false : { opacity: 0, y: 36 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-60px' }}
+              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             >
-              {/* Image Showcase Column */}
-              <div className="case-study-visual">
+              {/* Image Showcase Column with clip-path masked reveal */}
+              <motion.div
+                className="case-study-visual"
+                initial={
+                  shouldReduceMotion
+                    ? false
+                    : { clipPath: 'inset(6% 0% 6% 0%)', opacity: 0.85 }
+                }
+                whileInView={{ clipPath: 'inset(0% 0% 0% 0%)', opacity: 1 }}
+                viewport={{ once: true, margin: '-50px' }}
+                transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+              >
                 <Link
                   to={proj.route}
                   className="case-study-img-link"
@@ -117,13 +156,23 @@ export default function Portfolio({ onOpenEnquiry }) {
                     </div>
                   </div>
                 </Link>
-              </div>
+              </motion.div>
 
               {/* Text & Meta Column */}
-              <div className="case-study-details">
+              <motion.div
+                className="case-study-details"
+                initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-50px' }}
+                transition={{
+                  duration: 0.55,
+                  delay: shouldReduceMotion ? 0 : 0.12,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
+              >
                 <div className="case-study-badges">
                   <span className="badge badge-brand">{proj.category}</span>
-                  <span className="badge badge-neutral">WebNest Portfolio Concept</span>
+                  <span className="badge badge-neutral">Interactive Demo</span>
                 </div>
 
                 <div className="case-study-brand-kicker">{proj.kicker}</div>
@@ -149,12 +198,12 @@ export default function Portfolio({ onOpenEnquiry }) {
                     aria-label={`View Demo of ${proj.title}`}
                   >
                     <span>View Demo</span>
-                    <ArrowRight size={16} aria-hidden="true" />
+                    <ArrowRight size={16} aria-hidden="true" className="arrow-icon" />
                   </Link>
 
                   <button
                     type="button"
-                    className="btn btn-ghost"
+                    className="btn btn-secondary"
                     onClick={() => setSelectedProject(proj)}
                     aria-label={`View architectural details of ${proj.title}`}
                   >
@@ -162,15 +211,15 @@ export default function Portfolio({ onOpenEnquiry }) {
                     <span>Specs</span>
                   </button>
                 </div>
-              </div>
-            </article>
+              </motion.div>
+            </motion.article>
           ))}
         </div>
 
-        {/* Authenticity Disclaimer */}
-        <div className="portfolio-concept-note reveal-init">
+        {/* Authenticity Disclaimer (No Pricing Reference) */}
+        <div className="portfolio-concept-note text-center">
           <p className="caption">
-            * Note: These are complete, browsable web applications engineered by WebNest as demonstration concepts. All business entities, staff, menus, and pricing are fictional representations to showcase digital design, speed, and conversion workflows.
+            * Note: These are complete, browsable web applications engineered by WebNest as demonstration concepts. All business entities, staff, menus, and service scopes are representations to showcase digital design, speed, and conversion workflows.
           </p>
         </div>
       </div>

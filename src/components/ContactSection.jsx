@@ -425,9 +425,9 @@ export default function ContactSection({ defaultRequirement = '' }) {
                         aria-describedby={errors.websiteRequirement ? 'err-requirement' : undefined}
                       >
                         <option value="" disabled>Select website requirement</option>
-                        <option value="Starter Plan (₹4,999)">Starter Plan (₹4,999)</option>
-                        <option value="Business Plan (₹9,999)">Business Plan (₹9,999)</option>
-                        <option value="Premium Plan (₹19,999+)">Premium Plan (₹19,999+)</option>
+                        <option value="Starter Package">Starter Package</option>
+                        <option value="Business Package">Business Package</option>
+                        <option value="Premium Package">Premium Package</option>
                         <option value="Business Website">Business Website</option>
                         <option value="Landing Page">Landing Page</option>
                         <option value="Restaurant & Hospitality Website">Restaurant & Hospitality Website</option>

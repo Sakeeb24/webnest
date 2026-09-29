@@ -131,11 +131,12 @@
   object-fit: cover;
   object-position: top center;
   display: block;
-  transition: transform var(--motion-duration-slow) var(--motion-ease-standard);
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
 }
 
 .case-study-img-link:hover .case-study-thumb {
-  transform: scale(1.02);
+  transform: scale(1.03);
 }
 
 .case-study-hover-overlay {

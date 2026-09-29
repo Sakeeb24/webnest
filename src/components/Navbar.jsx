@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Menu, X, MessageCircle } from 'lucide-react';
+import { motion, AnimatePresence, useReducedMotion } from 'motion/react';
 import { BUSINESS_CONFIG, createWhatsAppLink } from '../config/business';
 
 export default function Navbar({ onOpenEnquiry: _onOpenEnquiry = () => {} }) {
@@ -7,6 +8,7 @@ export default function Navbar({ onOpenEnquiry: _onOpenEnquiry = () => {} }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const menuButtonRef = useRef(null);
   const mobileNavRef = useRef(null);
+  const shouldReduceMotion = useReducedMotion();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -46,7 +48,7 @@ export default function Navbar({ onOpenEnquiry: _onOpenEnquiry = () => {} }) {
     { label: 'Home', href: '#top' },
     { label: 'Services', href: '#services' },
     { label: 'Work', href: '#work' },
-    { label: 'Pricing', href: '#pricing' },
+    { label: 'Packages', href: '#packages' },
     { label: 'Process', href: '#process' },
     { label: 'Team', href: '#team' },
     { label: 'Contact', href: '#contact' },
@@ -108,7 +110,7 @@ export default function Navbar({ onOpenEnquiry: _onOpenEnquiry = () => {} }) {
               <span>Chat on WhatsApp</span>
             </a>
 
-            {/* Mobile Menu Toggle Button (44x44 minimum touch target) */}
+            {/* Mobile Menu Toggle Button */}
             <button
               ref={menuButtonRef}
               type="button"
@@ -124,60 +126,80 @@ export default function Navbar({ onOpenEnquiry: _onOpenEnquiry = () => {} }) {
         </div>
       </div>
 
-      {/* Mobile Drawer Navigation */}
-      {mobileMenuOpen && (
-        <div
-          id="mobile-navigation"
-          ref={mobileNavRef}
-          className="mobile-nav-overlay"
-          role="dialog"
-          aria-modal="true"
-          aria-label="Mobile Navigation"
-        >
-          <div className="mobile-nav-backdrop" onClick={() => setMobileMenuOpen(false)} />
-          <div className="mobile-nav-content">
-            <div className="mobile-nav-header">
-              <span className="brand-text">WebNest</span>
-              <button
-                type="button"
-                className="mobile-menu-close"
-                onClick={() => setMobileMenuOpen(false)}
-                aria-label="Close navigation menu"
-              >
-                <X size={24} aria-hidden="true" />
-              </button>
-            </div>
-            <nav className="mobile-nav-links" aria-label="Mobile Navigation Links">
-              <ul>
-                {navLinks.map((link) => (
-                  <li key={link.label}>
-                    <a
-                      href={link.href}
-                      className="mobile-nav-link"
-                      onClick={handleLinkClick}
-                    >
-                      {link.label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </nav>
-            <div className="mobile-nav-cta">
-              <a
-                href={whatsappDefaultUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn btn-primary btn-lg"
-                style={{ width: '100%', justifyContent: 'center' }}
-                onClick={handleLinkClick}
-              >
-                <MessageCircle size={18} aria-hidden="true" />
-                <span>Chat on WhatsApp</span>
-              </a>
-            </div>
+      {/* Mobile Drawer Navigation with AnimatePresence */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <div
+            id="mobile-navigation"
+            ref={mobileNavRef}
+            className="mobile-nav-overlay"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Mobile Navigation"
+          >
+            {/* Backdrop */}
+            <motion.div
+              className="mobile-nav-backdrop"
+              onClick={() => setMobileMenuOpen(false)}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+            />
+
+            {/* Content Drawer */}
+            <motion.div
+              className="mobile-nav-content"
+              initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, x: '100%' }}
+              animate={shouldReduceMotion ? { opacity: 1 } : { opacity: 1, x: 0 }}
+              exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, x: '100%' }}
+              transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <div className="mobile-nav-header">
+                <span className="brand-text">WebNest</span>
+                <button
+                  type="button"
+                  className="mobile-menu-close"
+                  onClick={() => setMobileMenuOpen(false)}
+                  aria-label="Close navigation menu"
+                >
+                  <X size={24} aria-hidden="true" />
+                </button>
+              </div>
+
+              <nav className="mobile-nav-links" aria-label="Mobile Navigation Links">
+                <ul>
+                  {navLinks.map((link) => (
+                    <li key={link.label}>
+                      <a
+                        href={link.href}
+                        className="mobile-nav-link"
+                        onClick={handleLinkClick}
+                      >
+                        {link.label}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
+
+              <div className="mobile-nav-cta">
+                <a
+                  href={whatsappDefaultUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-primary btn-lg"
+                  style={{ width: '100%', justifyContent: 'center' }}
+                  onClick={handleLinkClick}
+                >
+                  <MessageCircle size={18} aria-hidden="true" />
+                  <span>Chat on WhatsApp</span>
+                </a>
+              </div>
+            </motion.div>
           </div>
-        </div>
-      )}
+        )}
+      </AnimatePresence>
     </header>
   );
 }

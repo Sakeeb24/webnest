@@ -1,9 +1,12 @@
 import React from 'react';
 import { Search, ArrowRight, CheckCircle2 } from 'lucide-react';
+import { motion, useReducedMotion } from 'motion/react';
 import { BUSINESS_CONFIG, createWhatsAppLink } from '../config/business';
 import './ProblemSection.css';
 
 export default function ProblemSection({ onOpenEnquiry: _onOpenEnquiry = () => {} }) {
+  const shouldReduceMotion = useReducedMotion();
+
   const points = [
     {
       title: 'First Impressions & Credibility',
@@ -15,7 +18,7 @@ export default function ProblemSection({ onOpenEnquiry: _onOpenEnquiry = () => {
     },
     {
       title: 'Clear Service & Menu Presentation',
-      desc: 'Transparent pricing, service lists, and photo galleries give customers the exact clarity they need before deciding.'
+      desc: 'Detailed service lists, visual menus, and photo galleries give customers the exact clarity they need before deciding.'
     },
     {
       title: 'Integrated Location & Operating Hours',
@@ -30,7 +33,13 @@ export default function ProblemSection({ onOpenEnquiry: _onOpenEnquiry = () => {
       <div className="container">
         <div className="problem-editorial-grid">
           {/* Left Column: The Commercial Reality */}
-          <div className="problem-narrative reveal-init">
+          <motion.div
+            className="problem-narrative"
+            initial={shouldReduceMotion ? false : { opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-40px' }}
+            transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+          >
             <div className="section-badge">
               <Search size={14} aria-hidden="true" />
               <span>The Local Reality</span>
@@ -57,13 +66,23 @@ export default function ProblemSection({ onOpenEnquiry: _onOpenEnquiry = () => {
                 aria-label={`Get Your Website with WebNest on WhatsApp at ${BUSINESS_CONFIG.whatsapp.displayNumber}`}
               >
                 <span>Get Your Website</span>
-                <ArrowRight size={16} aria-hidden="true" />
+                <ArrowRight size={16} aria-hidden="true" className="arrow-icon" />
               </a>
             </div>
-          </div>
+          </motion.div>
 
           {/* Right Column: Editorial Value Stack */}
-          <div className="problem-commitments reveal-init stagger-2">
+          <motion.div
+            className="problem-commitments"
+            initial={shouldReduceMotion ? false : { opacity: 0, y: 28 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-40px' }}
+            transition={{
+              duration: 0.55,
+              delay: shouldReduceMotion ? 0 : 0.15,
+              ease: [0.22, 1, 0.36, 1],
+            }}
+          >
             <div className="commitments-header">
               <span className="commitments-eyebrow">The WebNest Standard</span>
               <h3 className="heading-md commitments-title">
@@ -84,7 +103,7 @@ export default function ProblemSection({ onOpenEnquiry: _onOpenEnquiry = () => {
                 </div>
               ))}
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

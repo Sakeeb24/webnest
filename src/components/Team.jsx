@@ -1,5 +1,6 @@
 import React from 'react';
 import { Users, MessageCircle } from 'lucide-react';
+import { motion, useReducedMotion } from 'motion/react';
 import { BUSINESS_CONFIG, createWhatsAppLink } from '../config/business';
 import './Team.css';
 
@@ -23,11 +24,18 @@ function GitHubIcon({ size = 16 }) {
 
 export default function Team() {
   const { founder, sales } = BUSINESS_CONFIG.team;
+  const shouldReduceMotion = useReducedMotion();
 
   return (
     <section className="section team-section" id="team" aria-labelledby="team-heading">
       <div className="container">
-        <div className="section-header text-center reveal-init">
+        <motion.div
+          className="section-header text-center"
+          initial={shouldReduceMotion ? false : { opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-40px' }}
+          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+        >
           <div className="section-badge">
             <Users size={14} aria-hidden="true" />
             <span>The Team</span>
@@ -38,11 +46,17 @@ export default function Team() {
           <p className="body-lg">
             Direct communication with the specialists building and launching your website. No account managers, middle layers, or agency markup.
           </p>
-        </div>
+        </motion.div>
 
         <div className="team-grid">
           {/* Founder / Developer Card */}
-          <article className="team-card reveal-init stagger-1">
+          <motion.article
+            className="team-card"
+            initial={shouldReduceMotion ? false : { opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-40px' }}
+            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+          >
             <div className="team-card-header">
               <div className="team-avatar-placeholder" aria-hidden="true">
                 SM
@@ -82,10 +96,16 @@ export default function Team() {
                 </a>
               )}
             </div>
-          </article>
+          </motion.article>
 
           {/* Sales / Client Communication Card */}
-          <article className="team-card reveal-init stagger-2">
+          <motion.article
+            className="team-card"
+            initial={shouldReduceMotion ? false : { opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-40px' }}
+            transition={{ duration: 0.5, delay: shouldReduceMotion ? 0 : 0.12, ease: [0.22, 1, 0.36, 1] }}
+          >
             <div className="team-card-header">
               <div className="team-avatar-placeholder" aria-hidden="true">
                 MJ
@@ -112,7 +132,7 @@ export default function Team() {
                 <span>WhatsApp: {sales.whatsappDisplay}</span>
               </a>
             </div>
-          </article>
+          </motion.article>
         </div>
       </div>
     </section>

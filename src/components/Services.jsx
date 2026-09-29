@@ -1,44 +1,57 @@
-import React from 'react';
-import { ArrowRight, Sparkles } from 'lucide-react';
+import React, { useState } from 'react';
+import { ArrowRight, ArrowUpRight, Globe, Utensils, Dumbbell, Sparkles, Layers } from 'lucide-react';
 import { motion, useReducedMotion } from 'motion/react';
 import { BUSINESS_CONFIG, createWhatsAppLink } from '../config/business';
 import './Services.css';
 
-export default function Services({ onOpenEnquiry: _onOpenEnquiry = () => {} }) {
+export default function Services({ onOpenEnquiry = () => {} }) {
+  const [hoveredIndex, setHoveredIndex] = useState(null);
   const shouldReduceMotion = useReducedMotion();
 
   const services = [
     {
       num: '01',
       title: 'Business Websites',
-      description: 'Professional websites designed around your business.',
-      detail: 'Tailored digital headquarters that solidify your commercial legitimacy, build immediate trust with prospective customers, and make contacting you effortless.',
-      highlights: ['Local Search Optimization', 'Mobile-First Layout', 'Direct WhatsApp Enquiry Integration'],
+      icon: Globe,
+      tagline: 'Professional digital presence engineered to build trust and generate inquiries.',
+      details: 'Tailored digital headquarters that solidify your commercial legitimacy, position your brand above competitors, and make contacting you effortless across phone and WhatsApp.',
+      tags: ['Local SEO Setup', 'Mobile First', 'WhatsApp Integration', 'Google Maps Route'],
     },
     {
       num: '02',
       title: 'Restaurant & Café Websites',
-      description: 'Menus, galleries, locations and enquiry experiences.',
-      detail: 'Sensory digital extensions of your physical venue. Highlight fresh culinary specialties, seasonal menus, and clear location directions for hungry diners.',
-      highlights: ['Visual Digital Menus', 'Table Reservation Inquiries', 'One-Tap Google Maps Directions'],
+      icon: Utensils,
+      tagline: 'Sensory menus, dish showcases, dining hours, and direct location routing.',
+      details: 'Digital extensions of your physical dining experience. Showcase fresh specialties, dietary options, signature thalis or bistro menus, with 1-tap directions for hungry patrons.',
+      tags: ['Visual Digital Menu', 'Table Inquiry Flow', 'Google Maps Directions', 'Instagram Integration'],
     },
     {
       num: '03',
       title: 'Fitness & Service Websites',
-      description: 'Services, programs, enquiries and customer information.',
-      detail: 'High-clarity platforms designed for active appointment scheduling, transparent service options, trainer portfolios, and frictionless client intake.',
-      highlights: ['Service Schedules & Timetables', 'Stylist & Trainer Spotlights', 'Frictionless Booking Inquiries'],
+      icon: Dumbbell,
+      tagline: 'Training programs, stylist lookbooks, transparent service menus, and schedules.',
+      details: 'High-clarity platforms designed for client booking, coach credentials, transparent service tiers, and zero-friction client onboarding for gyms, salons, and studios.',
+      tags: ['Service Menus', 'Trainer/Stylist Profiles', '1-Tap Booking Inquiry', 'Operating Timetable'],
     },
     {
       num: '04',
       title: 'Custom Websites',
-      description: 'Unique digital experiences built around your requirements.',
-      detail: 'Bespoke web architecture engineered to your exact operational specifications, featuring tailored interactive logic, third-party integrations, and unique brand motion.',
-      highlights: ['Bespoke Interactions & Motion', 'Specialized Workflows', 'Domain & Analytics Setup'],
+      icon: Sparkles,
+      tagline: 'Unique digital experiences engineered around your specific operational workflows.',
+      details: 'Bespoke web engineering with tailored interactive logic, specialized customer journeys, domain setup, third-party hooks, and fluid motion designed from scratch.',
+      tags: ['Bespoke Interactions', 'Custom Workflows', 'Domain & Analytics', 'Sub-second Speed'],
     },
   ];
 
-  const whatsappUrl = createWhatsAppLink(BUSINESS_CONFIG.messages.main);
+  const handleRowClick = (srv) => {
+    onOpenEnquiry(srv.title);
+    const contactEl = document.getElementById('contact');
+    if (contactEl) {
+      contactEl.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const whatsappGeneralUrl = createWhatsAppLink(BUSINESS_CONFIG.messages.main);
 
   return (
     <section className="section services-editorial-section" id="services" aria-labelledby="services-heading">
@@ -46,7 +59,7 @@ export default function Services({ onOpenEnquiry: _onOpenEnquiry = () => {} }) {
         {/* Section Header */}
         <div className="services-section-header">
           <div className="services-eyebrow">
-            <Sparkles size={13} className="text-brand" aria-hidden="true" />
+            <Layers size={13} className="text-brand" aria-hidden="true" />
             <span>STUDIO CAPABILITIES</span>
           </div>
           <div className="services-header-split">
@@ -54,50 +67,79 @@ export default function Services({ onOpenEnquiry: _onOpenEnquiry = () => {} }) {
               What We Build
             </h2>
             <p className="body-lg services-subtitle">
-              From focused business websites to fully custom digital experiences.
+              From focused local business websites to bespoke digital experiences.
             </p>
           </div>
         </div>
 
-        {/* Editorial Services Grid */}
-        <div className="services-grid">
-          {services.map((srv, idx) => (
-            <motion.article
-              key={srv.num}
-              className="service-card"
-              initial={shouldReduceMotion ? false : { opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-40px' }}
-              transition={{
-                duration: 0.5,
-                delay: shouldReduceMotion ? 0 : idx * 0.08,
-                ease: [0.22, 1, 0.36, 1],
-              }}
-            >
-              <div className="service-card-top">
-                <span className="service-num">[ {srv.num} ]</span>
-                <span className="service-card-indicator" aria-hidden="true" />
-              </div>
+        {/* Interactive Studio Rows (Editorial Studio Layout) */}
+        <div className="services-interactive-list" role="list">
+          {services.map((srv, idx) => {
+            const Icon = srv.icon;
+            const isHovered = hoveredIndex === idx;
 
-              <h3 className="service-card-title">{srv.title}</h3>
-              <p className="service-card-desc">{srv.description}</p>
-              <p className="service-card-detail">{srv.detail}</p>
+            return (
+              <motion.article
+                key={srv.num}
+                className={`service-studio-row ${isHovered ? 'is-hovered' : ''}`}
+                onMouseEnter={() => setHoveredIndex(idx)}
+                onMouseLeave={() => setHoveredIndex(null)}
+                onClick={() => handleRowClick(srv)}
+                initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-40px' }}
+                transition={{
+                  duration: 0.5,
+                  delay: shouldReduceMotion ? 0 : idx * 0.08,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
+                role="listitem"
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    handleRowClick(srv);
+                  }
+                }}
+                aria-label={`${srv.num} ${srv.title} - Click to discuss this project`}
+              >
+                {/* Main Row Bar */}
+                <div className="row-main-bar">
+                  <div className="row-left">
+                    <span className="row-num">{srv.num}</span>
+                    <div className="row-icon-wrap" aria-hidden="true">
+                      <Icon size={20} className="row-icon text-brand" />
+                    </div>
+                    <h3 className="row-title">{srv.title}</h3>
+                  </div>
 
-              <div className="service-highlights">
-                <ul>
-                  {srv.highlights.map((item, hIdx) => (
-                    <li key={hIdx}>
-                      <span className="bullet text-brand" aria-hidden="true">+</span>
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </motion.article>
-          ))}
+                  <div className="row-center">
+                    <p className="row-tagline">{srv.tagline}</p>
+                  </div>
+
+                  <div className="row-right">
+                    <span className="row-cta-label">Discuss Project</span>
+                    <ArrowUpRight size={18} className="row-arrow" aria-hidden="true" />
+                  </div>
+                </div>
+
+                {/* Expanded Details and Tags */}
+                <div className="row-expanded-content">
+                  <p className="row-detail-text">{srv.details}</p>
+                  <div className="row-tags-list">
+                    {srv.tags.map((tag, tIdx) => (
+                      <span key={tIdx} className="row-tag-pill">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </motion.article>
+            );
+          })}
         </div>
 
-        {/* Bottom Fast Track Bar */}
+        {/* Studio Consultation Footer */}
         <motion.div
           className="services-footer-bar"
           initial={shouldReduceMotion ? false : { opacity: 0, y: 16 }}
@@ -109,14 +151,14 @@ export default function Services({ onOpenEnquiry: _onOpenEnquiry = () => {} }) {
             Have a unique business requirement not listed above?
           </span>
           <a
-            href={whatsappUrl}
+            href={whatsappGeneralUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="services-footer-link"
-            aria-label="Discuss custom website requirement on WhatsApp"
+            aria-label="Discuss custom website requirement on WhatsApp with our founders"
           >
             <span>Discuss your custom project with our founders</span>
-            <ArrowRight size={15} aria-hidden="true" />
+            <ArrowRight size={15} aria-hidden="true" className="arrow-icon" />
           </a>
         </motion.div>
       </div>

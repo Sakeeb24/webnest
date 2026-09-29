@@ -1,5 +1,21 @@
 import React from 'react';
-import { Check, ArrowRight, Layers } from 'lucide-react';
+import { 
+  ArrowRight, 
+  ArrowUpRight,
+  Layers, 
+  Globe, 
+  MessageCircle, 
+  MapPin, 
+  Smartphone, 
+  Sparkles, 
+  Search, 
+  BarChart3, 
+  Code2, 
+  Check,
+  Layout,
+  SlidersHorizontal,
+  Mail
+} from 'lucide-react';
 import { motion, useReducedMotion } from 'motion/react';
 import { BUSINESS_CONFIG, createWhatsAppLink } from '../config/business';
 import './Packages.css';
@@ -12,51 +28,51 @@ export default function Packages({ onSelectPackage = () => {} }) {
       id: 'starter',
       code: 'LEVEL 01',
       name: 'STARTER',
-      tagline: 'Focused presence for emerging businesses',
+      tagline: 'Business website essentials',
       featured: false,
       ctaText: 'Get Started',
       whatsappMsg: BUSINESS_CONFIG.messages.starter,
       features: [
-        '1-page professional website',
-        'WhatsApp integration',
-        'Google Maps integration',
-        'Mobile-responsive design',
-        'Contact / enquiry section',
+        { label: '1-page professional website', icon: Globe },
+        { label: 'WhatsApp integration', icon: MessageCircle },
+        { label: 'Google Maps integration', icon: MapPin },
+        { label: 'Mobile-responsive design', icon: Smartphone },
+        { label: 'Contact / enquiry section', icon: Mail },
       ],
     },
     {
       id: 'business',
       code: 'LEVEL 02',
       name: 'BUSINESS',
-      tagline: 'Complete presence tailored to your clientele',
+      tagline: 'A complete professional presence',
       featured: true,
       badgeText: 'MOST POPULAR',
       ctaText: 'Get Started',
       whatsappMsg: BUSINESS_CONFIG.messages.business,
       features: [
-        '5–7 page professional website',
-        'Custom design tailored to your business',
-        'WhatsApp integration',
-        'Google Maps integration',
-        'Basic SEO setup',
-        'Contact / enquiry functionality',
+        { label: '5–7 page professional website', icon: Layout },
+        { label: 'Custom design tailored to your business', icon: Sparkles },
+        { label: 'WhatsApp integration', icon: MessageCircle },
+        { label: 'Google Maps integration', icon: MapPin },
+        { label: 'Basic SEO setup', icon: Search },
+        { label: 'Contact / enquiry functionality', icon: Mail },
       ],
     },
     {
       id: 'premium',
       code: 'LEVEL 03',
       name: 'PREMIUM',
-      tagline: 'Bespoke architecture with tailored features',
+      tagline: 'A fully custom digital experience',
       featured: false,
       ctaText: 'Discuss Your Project',
       whatsappMsg: BUSINESS_CONFIG.messages.premium,
       features: [
-        'Fully custom website',
-        'Advanced features and interactions',
-        'Booking / enquiry functionality',
-        'Third-party integrations',
-        'Analytics setup',
-        'Custom functionality',
+        { label: 'Fully custom website', icon: Sparkles },
+        { label: 'Advanced features and interactions', icon: SlidersHorizontal },
+        { label: 'Booking / enquiry functionality', icon: MessageCircle },
+        { label: 'Third-party integrations', icon: Layers },
+        { label: 'Analytics setup', icon: BarChart3 },
+        { label: 'Custom functionality', icon: Code2 },
       ],
     },
   ];
@@ -95,7 +111,7 @@ export default function Packages({ onSelectPackage = () => {} }) {
           </p>
         </motion.div>
 
-        {/* 3 Scope Cards (Zero Pricing Numbers or Currency) */}
+        {/* 3 Scope Columns (Editorial Columns - Zero Pricing Numbers or Currency) */}
         <div className="packages-grid">
           {packages.map((pkg, idx) => (
             <motion.div
@@ -118,7 +134,7 @@ export default function Packages({ onSelectPackage = () => {} }) {
 
               <div className="package-card-header">
                 <div className="package-card-meta">
-                  <span className="package-code">[ {pkg.code} ]</span>
+                  <span className="package-code">{pkg.code}</span>
                 </div>
                 <h3 className="package-name">{pkg.name}</h3>
                 <p className="package-tagline">{pkg.tagline}</p>
@@ -127,12 +143,17 @@ export default function Packages({ onSelectPackage = () => {} }) {
               <div className="package-features-block">
                 <span className="package-scope-label">DELIVERABLES INCLUDED</span>
                 <ul className="package-features-list">
-                  {pkg.features.map((feat, fIdx) => (
-                    <li key={fIdx}>
-                      <Check size={15} className="text-brand" aria-hidden="true" />
-                      <span>{feat}</span>
-                    </li>
-                  ))}
+                  {pkg.features.map((feat, fIdx) => {
+                    const FeatIcon = feat.icon || Check;
+                    return (
+                      <li key={fIdx}>
+                        <div className="feat-icon-wrap" aria-hidden="true">
+                          <FeatIcon size={14} className="feat-icon text-brand" />
+                        </div>
+                        <span>{feat.label}</span>
+                      </li>
+                    );
+                  })}
                 </ul>
               </div>
 
@@ -155,7 +176,7 @@ export default function Packages({ onSelectPackage = () => {} }) {
                   aria-label={`Inquire about ${pkg.name} directly on WhatsApp`}
                 >
                   <span>or ask about this on WhatsApp</span>
-                  <span aria-hidden="true">→</span>
+                  <ArrowUpRight size={14} aria-hidden="true" className="cta-arrow" />
                 </a>
               </div>
             </motion.div>

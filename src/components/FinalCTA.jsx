@@ -1,12 +1,12 @@
 import React from 'react';
-import { ArrowRight, MessageCircle } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, MessageCircle } from 'lucide-react';
 import { motion, useReducedMotion } from 'motion/react';
 import { BUSINESS_CONFIG, createWhatsAppLink } from '../config/business';
 import './FinalCTA.css';
 
 export default function FinalCTA({ onOpenEnquiry: _onOpenEnquiry = () => {} }) {
   const whatsappUrl = createWhatsAppLink(
-    "Hi WebNest, I'm interested in getting a website for my business. I'd like to know more about your services."
+    "Hi WebNest, I'm interested in getting a website for my business. I'd like to see what my website could look like."
   );
   const shouldReduceMotion = useReducedMotion();
 
@@ -14,15 +14,15 @@ export default function FinalCTA({ onOpenEnquiry: _onOpenEnquiry = () => {} }) {
     <section className="section final-cta-section" id="final-cta" aria-labelledby="final-cta-heading">
       <div className="container">
         <motion.div
-          className="final-cta-card"
+          className="final-cta-destination"
           initial={shouldReduceMotion ? false : { opacity: 0, y: 28 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-40px' }}
           transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
         >
-          {/* Subtle Background Lines */}
+          {/* Subtle slow moving atmospheric radial glow & texture */}
+          <div className="final-cta-atmosphere" aria-hidden="true" />
           <div className="final-cta-grid-lines" aria-hidden="true" />
-          <div className="final-cta-glow" aria-hidden="true" />
 
           <div className="final-cta-content relative-z">
             <div className="final-cta-badge">
@@ -30,12 +30,13 @@ export default function FinalCTA({ onOpenEnquiry: _onOpenEnquiry = () => {} }) {
               <span>CAPACITY OPEN // START A PROJECT</span>
             </div>
 
-            <h2 id="final-cta-heading" className="display-md final-cta-title">
-              Ready to Put Your Business Online?
+            <h2 id="final-cta-heading" className="display-lg final-cta-title">
+              Let’s Build Something <br className="cta-break" />
+              <span className="cta-title-highlight">Worth Clicking.</span>
             </h2>
 
             <p className="body-lg final-cta-text">
-              Tell us what you need. We'll show you what it could look like.
+              Tell us about your business and we’ll show you what your website could look like.
             </p>
 
             <div className="final-cta-actions">
@@ -49,17 +50,17 @@ export default function FinalCTA({ onOpenEnquiry: _onOpenEnquiry = () => {} }) {
               >
                 <MessageCircle size={18} aria-hidden="true" />
                 <span>Talk to WebNest</span>
-                <span className="arrow-icon" aria-hidden="true">→</span>
+                <ArrowRight size={18} aria-hidden="true" className="arrow-icon" />
               </a>
 
               {/* Secondary CTA: View Our Work -> Scrolls to Portfolio */}
               <a
                 href="#work"
                 className="btn btn-secondary btn-lg final-cta-secondary"
-                aria-label="View Our Work - Explore website concepts"
+                aria-label="View Our Work - Explore realistic website concepts"
               >
                 <span>View Our Work</span>
-                <ArrowRight size={16} aria-hidden="true" />
+                <ArrowUpRight size={16} aria-hidden="true" className="cta-arrow" />
               </a>
             </div>
 
@@ -67,6 +68,8 @@ export default function FinalCTA({ onOpenEnquiry: _onOpenEnquiry = () => {} }) {
               <span>Direct WhatsApp Line: {BUSINESS_CONFIG.whatsapp.displayNumber}</span>
               <span className="meta-separator">•</span>
               <span>Fast Founder Response</span>
+              <span className="meta-separator">•</span>
+              <span>Zero Obligation Consultation</span>
             </div>
           </div>
         </motion.div>

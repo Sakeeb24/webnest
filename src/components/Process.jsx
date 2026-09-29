@@ -1,34 +1,50 @@
-import React from 'react';
-import { ListOrdered } from 'lucide-react';
-import { motion, useReducedMotion } from 'motion/react';
+import React, { useRef } from 'react';
+import { ListOrdered, MessageCircle, PenTool, Eye, Rocket } from 'lucide-react';
+import { motion, useReducedMotion, useScroll, useSpring } from 'motion/react';
 import './Process.css';
 
 export default function Process() {
   const shouldReduceMotion = useReducedMotion();
+  const timelineRef = useRef(null);
+
+  // Framer Motion scroll progress tracking across the timeline
+  const { scrollYProgress } = useScroll({
+    target: timelineRef,
+    offset: ['start 80%', 'end 35%'],
+  });
+
+  const smoothProgress = useSpring(scrollYProgress, {
+    damping: 25,
+    stiffness: 160,
+  });
 
   const steps = [
     {
       num: '01',
-      title: 'Tell us about your business.',
+      title: 'Tell us',
       subtitle: 'Discovery & Goals',
-      description: 'We learn about your business, target customers, and core offerings through a simple, focused briefing conversation.',
+      icon: MessageCircle,
+      description: 'We learn about your business, target customers, and core offerings through a focused, zero-hassle conversation.',
     },
     {
       num: '02',
-      title: 'We design the experience.',
-      subtitle: 'Architecture & Design',
-      description: 'We engineer a custom digital presence built around your brand, mobile speed, and customer enquiry paths.',
+      title: 'We design',
+      subtitle: 'Architecture & Craft',
+      icon: PenTool,
+      description: 'We engineer a custom digital presence built around your brand identity, mobile speed, and customer enquiry paths.',
     },
     {
       num: '03',
-      title: 'You review and refine.',
+      title: 'You review',
       subtitle: 'Staging & Feedback',
-      description: 'You test the private staging site directly on your phone and laptop, request adjustments, and approve.',
+      icon: Eye,
+      description: 'You test the private staging link directly on your phone and laptop, request adjustments, and give approval.',
     },
     {
       num: '04',
-      title: 'We launch.',
+      title: 'We launch',
       subtitle: 'Domain & Go-Live',
+      icon: Rocket,
       description: 'We configure your domain, verify WhatsApp integration, submit search metadata, and hand over your live site.',
     },
   ];
@@ -56,34 +72,52 @@ export default function Process() {
           </p>
         </motion.div>
 
-        {/* Editorial Horizontal Timeline on Desktop, Vertical on Mobile */}
-        <div className="process-timeline">
-          <div className="process-timeline-line" aria-hidden="true" />
+        {/* Visual Timeline with Framer Motion scroll progress */}
+        <div ref={timelineRef} className="process-timeline">
+          {/* Base timeline track */}
+          <div className="process-timeline-track" aria-hidden="true">
+            {/* Animated progress bar */}
+            {!shouldReduceMotion && (
+              <motion.div
+                className="process-timeline-progress"
+                style={{ scaleX: smoothProgress }}
+              />
+            )}
+          </div>
 
           <div className="process-grid">
-            {steps.map((st, idx) => (
-              <motion.article
-                key={st.num}
-                className="process-card"
-                initial={shouldReduceMotion ? false : { opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-40px' }}
-                transition={{
-                  duration: 0.5,
-                  delay: shouldReduceMotion ? 0 : idx * 0.1,
-                  ease: [0.22, 1, 0.36, 1],
-                }}
-              >
-                <div className="process-card-top">
-                  <span className="process-node" aria-hidden="true" />
-                  <span className="process-num">[ {st.num} ]</span>
-                </div>
+            {steps.map((st, idx) => {
+              const StepIcon = st.icon;
 
-                <span className="process-kicker">{st.subtitle}</span>
-                <h3 className="process-card-title">{st.title}</h3>
-                <p className="process-card-text">{st.description}</p>
-              </motion.article>
-            ))}
+              return (
+                <motion.article
+                  key={st.num}
+                  className="process-card"
+                  initial={shouldReduceMotion ? false : { opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: '-40px' }}
+                  transition={{
+                    duration: 0.5,
+                    delay: shouldReduceMotion ? 0 : idx * 0.1,
+                    ease: [0.22, 1, 0.36, 1],
+                  }}
+                >
+                  <div className="process-card-top">
+                    <div className="process-node-wrap">
+                      <span className="process-node" aria-hidden="true" />
+                      <div className="process-icon-bubble" aria-hidden="true">
+                        <StepIcon size={16} className="text-brand step-icon" />
+                      </div>
+                    </div>
+                    <span className="process-num">{st.num}</span>
+                  </div>
+
+                  <span className="process-kicker">{st.subtitle}</span>
+                  <h3 className="process-card-title">{st.title}</h3>
+                  <p className="process-card-text">{st.description}</p>
+                </motion.article>
+              );
+            })}
           </div>
         </div>
       </div>

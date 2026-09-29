@@ -7,36 +7,44 @@
   /* ==========================================================================
      31.1 COLOR TOKENS — PREMIUM DIGITAL STUDIO PALETTE (DARK CANVAS)
      ========================================================================== */
-  /* Backgrounds */
-  --color-bg-primary: #0B0F17;
-  --color-bg-secondary: #0E1420;
-  --color-bg-surface: #121927;
-  --color-bg-elevated: #172032;
-  --color-bg-subtle: #141B2B;
-  --color-bg-dark: #070A10;
-  --color-bg-dark-card: #0F1523;
+  /* Backgrounds (Strict Palette: Deep Navy #0B1220, Surface #111827) */
+  --color-bg-primary: #0B1220;
+  --color-bg-secondary: #0E1626;
+  --color-bg-surface: #111827;
+  --color-bg-elevated: #182234;
+  --color-bg-subtle: #141D2E;
+  --color-bg-dark: #070B14;
+  --color-bg-dark-card: #0F1728;
 
-  /* Typography Colors (WCAG 2.2 AA compliant: #F8FAFC on #0B0F17 has 15.8:1 contrast; #94A3B8 has 7.3:1 contrast) */
+  /* Typography Colors (WCAG 2.2 AA compliant: #F8FAFC, #64748B, #FFFFFF) */
   --color-text-primary: #F8FAFC;
   --color-text-secondary: #94A3B8;
   --color-text-muted: #64748B;
   --color-text-dimmed: #475569;
-  --color-text-inverse: #0B0F17;
-  --color-text-brand: #3B82F6;
+  --color-text-inverse: #0B1220;
+  --color-text-white: #FFFFFF;
+  --color-text-brand: #2563EB;
 
-  /* Borders (Subtle hairline borders) */
+  /* Borders (Subtle hairline borders, #1E293B on dark canvas, #E2E8F0 light token) */
   --color-border-subtle: #162032;
   --color-border-default: #1E293B;
   --color-border-strong: #334155;
-  --color-border-brand: #3B82F6;
+  --color-border-light: #E2E8F0;
+  --color-border-brand: #2563EB;
 
-  /* Brand Colors */
-  --color-brand-primary: #3B82F6;
-  --color-brand-primary-hover: #60A5FA;
-  --color-brand-primary-active: #2563EB;
-  --color-brand-soft: rgba(59, 130, 246, 0.1);
-  --color-brand-soft-border: rgba(59, 130, 246, 0.25);
-  --color-brand-glow: rgba(59, 130, 246, 0.2);
+  /* Brand Colors (Brand Blue: #2563EB, Hover: #1D4ED8, Soft Blue: #EFF6FF) */
+  --color-brand-primary: #2563EB;
+  --color-brand-primary-hover: #1D4ED8;
+  --color-brand-primary-active: #1E40AF;
+  --color-brand-soft: rgba(37, 99, 235, 0.12);
+  --color-brand-soft-border: rgba(37, 99, 235, 0.28);
+  --color-brand-glow: rgba(37, 99, 235, 0.25);
+  --color-soft-blue: #EFF6FF;
+
+  /* Restrained Accent (Strictly for selective emphasis, never overused) */
+  --color-accent-violet: #7C3AED;
+  --color-accent-violet-soft: rgba(124, 58, 237, 0.12);
+  --color-accent-violet-border: rgba(124, 58, 237, 0.28);
 
   /* Status Colors */
   --color-status-success: #22C55E;
@@ -45,8 +53,8 @@
   --color-status-warning-bg: rgba(245, 158, 11, 0.12);
   --color-status-error: #EF4444;
   --color-status-error-bg: rgba(239, 68, 68, 0.12);
-  --color-status-info: #3B82F6;
-  --color-status-info-bg: rgba(59, 130, 246, 0.12);
+  --color-status-info: #2563EB;
+  --color-status-info-bg: rgba(37, 99, 235, 0.12);
 
   /* ==========================================================================
      31.2 TYPOGRAPHY TOKENS

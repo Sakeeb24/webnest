@@ -321,11 +321,22 @@
   left: -20px;
 }
 
+.hero-companion-card.companion-side {
+  bottom: -26px;
+  right: 16px;
+  width: 184px;
+  z-index: 4;
+}
+
 .companion-img-wrap {
   width: 100%;
   height: 92px;
   overflow: hidden;
   background-color: #070A10;
+}
+
+.companion-side .companion-img-wrap {
+  height: 80px;
 }
 
 .companion-img {
@@ -379,32 +390,29 @@
   transform: translateY(-50%) translateX(3px);
 }
 
-/* Floating Studio Chip */
-.hero-floating-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 6px 14px;
-  background-color: rgba(14, 20, 34, 0.9);
-  border: 1px solid var(--color-border-default);
-  border-radius: var(--radius-full);
-  font-size: 12px;
-  color: var(--color-text-secondary);
-  position: absolute;
-  bottom: -32px;
-  right: 20px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+/* Icon Animations adhering to Section 11 */
+.arrow-icon {
+  transition: transform var(--motion-duration-fast) var(--motion-ease-standard);
 }
 
-.chip-link {
-  color: var(--color-brand-primary);
-  font-weight: 600;
-  text-decoration: none;
-  margin-left: 2px;
+.btn:hover .arrow-icon {
+  transform: translateX(4px);
 }
 
-.chip-link:hover {
-  text-decoration: underline;
+.cta-arrow {
+  transition: transform var(--motion-duration-fast) var(--motion-ease-standard);
+}
+
+.btn:hover .cta-arrow {
+  transform: translateX(3px) translateY(-2px);
+}
+
+.link-arrow {
+  transition: transform var(--motion-duration-fast) var(--motion-ease-standard);
+}
+
+.hero-card-link-btn:hover .link-arrow {
+  transform: translateX(3px);
 }
 
 /* Responsive Breakpoints */
@@ -421,6 +429,7 @@
   .hero-visual-editorial {
     max-width: 600px;
     margin: 0 auto;
+    padding-bottom: 40px;
   }
 }
 

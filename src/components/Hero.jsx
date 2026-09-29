@@ -1,7 +1,7 @@
-import React from 'react';
-import { ArrowRight, MessageCircle, CheckCircle2, Compass } from 'lucide-react';
+import React, { useRef } from 'react';
+import { ArrowRight, ArrowUpRight, MessageCircle, CheckCircle2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { motion, useReducedMotion } from 'motion/react';
+import { motion, useReducedMotion, useMotionValue, useSpring, useTransform } from 'motion/react';
 import { BUSINESS_CONFIG, createWhatsAppLink } from '../config/business';
 import './Hero.css';
 
@@ -10,10 +10,47 @@ export default function Hero({ onOpenEnquiry: _onOpenEnquiry = () => {} }) {
     "Hi WebNest, I'm interested in getting a website for my business. I'd like to know more about your services."
   );
   const shouldReduceMotion = useReducedMotion();
+  const visualRef = useRef(null);
 
-  // Entrance variants adhering to 0.45-0.7s duration and 0.06-0.1s stagger
+  // Mouse spring physics for subtle interactive layer shift (4-8px max)
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  const springConfig = { damping: 28, stiffness: 140 };
+  const smoothX = useSpring(mouseX, springConfig);
+  const smoothY = useSpring(mouseY, springConfig);
+
+  // Subtle transforms: 4-6px for primary, 6-8px for companions
+  const primaryX = useTransform(smoothX, [-0.5, 0.5], [-5, 5]);
+  const primaryY = useTransform(smoothY, [-0.5, 0.5], [-5, 5]);
+  const primaryRotate = useTransform(smoothX, [-0.5, 0.5], [-0.4, 0.4]);
+
+  const compTopX = useTransform(smoothX, [-0.5, 0.5], [7, -7]);
+  const compTopY = useTransform(smoothY, [-0.5, 0.5], [6, -6]);
+
+  const compBottomX = useTransform(smoothX, [-0.5, 0.5], [-8, 8]);
+  const compBottomY = useTransform(smoothY, [-0.5, 0.5], [7, -7]);
+
+  const compCutsX = useTransform(smoothX, [-0.5, 0.5], [6, -6]);
+  const compCutsY = useTransform(smoothY, [-0.5, 0.5], [-6, 6]);
+
+  const handleMouseMove = (e) => {
+    if (shouldReduceMotion || !visualRef.current) return;
+    const rect = visualRef.current.getBoundingClientRect();
+    const xPct = (e.clientX - rect.left) / rect.width - 0.5;
+    const yPct = (e.clientY - rect.top) / rect.height - 0.5;
+    mouseX.set(xPct);
+    mouseY.set(yPct);
+  };
+
+  const handleMouseLeave = () => {
+    mouseX.set(0);
+    mouseY.set(0);
+  };
+
+  // Entrance variants adhering to 0.5-0.8s duration and 0.06-0.12s stagger
   const itemVariants = {
-    hidden: shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 22 },
+    hidden: shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 },
     visible: (customDelay = 0) => ({
       opacity: 1,
       y: 0,
@@ -27,7 +64,7 @@ export default function Hero({ onOpenEnquiry: _onOpenEnquiry = () => {} }) {
 
   return (
     <section className="hero-section" id="top" aria-labelledby="hero-heading">
-      {/* Background Subtle Studio Grid */}
+      {/* Background Subtle Studio Grid & Atmosphere */}
       <div className="hero-grid-pattern" aria-hidden="true" />
       <div className="hero-radial-glow" aria-hidden="true" />
 
@@ -51,7 +88,7 @@ export default function Hero({ onOpenEnquiry: _onOpenEnquiry = () => {} }) {
             <motion.h1
               id="hero-heading"
               className="hero-title display-lg"
-              custom={0.14}
+              custom={0.12}
               initial="hidden"
               animate="visible"
               variants={itemVariants}
@@ -62,7 +99,7 @@ export default function Hero({ onOpenEnquiry: _onOpenEnquiry = () => {} }) {
             {/* 3. Supporting Text */}
             <motion.p
               className="hero-description body-lg"
-              custom={0.24}
+              custom={0.20}
               initial="hidden"
               animate="visible"
               variants={itemVariants}
@@ -73,7 +110,7 @@ export default function Hero({ onOpenEnquiry: _onOpenEnquiry = () => {} }) {
             {/* 4. Action CTAs */}
             <motion.div
               className="hero-actions"
-              custom={0.34}
+              custom={0.28}
               initial="hidden"
               animate="visible"
               variants={itemVariants}
@@ -98,14 +135,14 @@ export default function Hero({ onOpenEnquiry: _onOpenEnquiry = () => {} }) {
               >
                 <MessageCircle size={17} aria-hidden="true" />
                 <span>Talk to WebNest</span>
-                <span className="cta-arrow" aria-hidden="true">→</span>
+                <ArrowUpRight size={16} aria-hidden="true" className="cta-arrow" />
               </a>
             </motion.div>
 
             {/* 5. Concise Business Qualities (Strictly NO prices, NO fake stats) */}
             <motion.div
               className="hero-micro-reassurance"
-              custom={0.44}
+              custom={0.36}
               initial="hidden"
               animate="visible"
               variants={itemVariants}
@@ -125,20 +162,30 @@ export default function Hero({ onOpenEnquiry: _onOpenEnquiry = () => {} }) {
             </motion.div>
           </div>
 
-          {/* 6. Hero Visual: Editorial Composed Project Showcase */}
+          {/* 6. Hero Visual: Editorial Composed Project Showcase with Spring Physics */}
           <motion.div
+            ref={visualRef}
             className="hero-visual-editorial"
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
             initial={shouldReduceMotion ? false : { opacity: 0, scale: 0.96, y: 24 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{
               duration: 0.65,
-              delay: shouldReduceMotion ? 0 : 0.28,
+              delay: shouldReduceMotion ? 0 : 0.42,
               ease: [0.22, 1, 0.36, 1],
             }}
             aria-label="Showcase preview of WebNest client websites"
           >
             {/* Primary Featured Project Frame: Only Fish */}
-            <div className="hero-main-card">
+            <motion.div
+              className="hero-main-card"
+              style={
+                shouldReduceMotion
+                  ? undefined
+                  : { x: primaryX, y: primaryY, rotateZ: primaryRotate }
+              }
+            >
               <div className="hero-card-header">
                 <div className="hero-card-dots" aria-hidden="true">
                   <span className="dot dot-red" />
@@ -161,7 +208,7 @@ export default function Hero({ onOpenEnquiry: _onOpenEnquiry = () => {} }) {
                 />
                 <div className="hero-card-overlay">
                   <div className="hero-card-meta">
-                    <span className="hero-meta-kicker">FEATURED CONCEPT</span>
+                    <span className="hero-meta-kicker">FEATURED SHOWCASE</span>
                     <h3 className="hero-meta-title">Only Fish</h3>
                     <p className="hero-meta-sub">Coastal Seafood Restaurant • Dharwad</p>
                   </div>
@@ -171,20 +218,25 @@ export default function Hero({ onOpenEnquiry: _onOpenEnquiry = () => {} }) {
                     aria-label="View Only Fish live demo website"
                   >
                     <span>View Demo</span>
-                    <ArrowRight size={14} aria-hidden="true" />
+                    <ArrowRight size={14} aria-hidden="true" className="link-arrow" />
                   </Link>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
-            {/* Overlapping Companion Card: IronCore Fitness */}
+            {/* Overlapping Companion Card 1: IronCore Fitness */}
             <motion.div
               className="hero-companion-card companion-top"
+              style={
+                shouldReduceMotion
+                  ? undefined
+                  : { x: compTopX, y: compTopY }
+              }
               animate={
                 shouldReduceMotion
                   ? undefined
                   : {
-                      y: [0, -6, 0],
+                      y: [0, -5, 0],
                       transition: {
                         duration: 5.6,
                         repeat: Infinity,
@@ -210,14 +262,19 @@ export default function Hero({ onOpenEnquiry: _onOpenEnquiry = () => {} }) {
               </Link>
             </motion.div>
 
-            {/* Overlapping Companion Card: Spice Avenue Dining */}
+            {/* Overlapping Companion Card 2: Spice Avenue Dining */}
             <motion.div
               className="hero-companion-card companion-bottom"
+              style={
+                shouldReduceMotion
+                  ? undefined
+                  : { x: compBottomX, y: compBottomY }
+              }
               animate={
                 shouldReduceMotion
                   ? undefined
                   : {
-                      y: [0, -8, 0],
+                      y: [0, -7, 0],
                       transition: {
                         duration: 6.2,
                         repeat: Infinity,
@@ -244,14 +301,44 @@ export default function Hero({ onOpenEnquiry: _onOpenEnquiry = () => {} }) {
               </Link>
             </motion.div>
 
-            {/* Studio Badge Chip: Urban Cuts */}
-            <div className="hero-floating-chip">
-              <Compass size={14} className="text-brand" aria-hidden="true" />
-              <span>Plus: Urban Cuts Grooming Studio</span>
-              <Link to="/demo/urban-cuts" className="chip-link" aria-label="Explore Urban Cuts demo">
-                Demo →
+            {/* Overlapping Companion Card 3: Urban Cuts Grooming Studio */}
+            <motion.div
+              className="hero-companion-card companion-side"
+              style={
+                shouldReduceMotion
+                  ? undefined
+                  : { x: compCutsX, y: compCutsY }
+              }
+              animate={
+                shouldReduceMotion
+                  ? undefined
+                  : {
+                      y: [0, -4, 0],
+                      transition: {
+                        duration: 5.2,
+                        repeat: Infinity,
+                        ease: 'easeInOut',
+                        delay: 1.4,
+                      },
+                    }
+              }
+            >
+              <Link to="/demo/urban-cuts" className="companion-inner" aria-label="Explore Urban Cuts demo">
+                <div className="companion-img-wrap">
+                  <img
+                    src={`${import.meta.env.BASE_URL}portfolio/urban-cuts.jpg`}
+                    alt="Urban Cuts salon website concept"
+                    className="companion-img"
+                    loading="eager"
+                  />
+                </div>
+                <div className="companion-info">
+                  <span className="companion-badge">SALON &amp; GROOMING</span>
+                  <span className="companion-title">Urban Cuts</span>
+                  <span className="companion-arrow">→</span>
+                </div>
               </Link>
-            </div>
+            </motion.div>
           </motion.div>
         </div>
       </div>

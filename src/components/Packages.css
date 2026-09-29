@@ -55,20 +55,27 @@
   padding: 36px 32px;
   display: flex;
   flex-direction: column;
-  transition: border-color var(--motion-duration-normal) var(--motion-ease-standard),
-              box-shadow var(--motion-duration-normal) var(--motion-ease-standard);
+  transition: transform 0.25s var(--motion-ease-standard),
+              border-color 0.25s var(--motion-ease-standard),
+              box-shadow 0.25s var(--motion-ease-standard);
 }
 
 .package-card:hover {
-  border-color: rgba(59, 130, 246, 0.35);
-  box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.5);
+  transform: translateY(-4px);
+  border-color: rgba(37, 99, 235, 0.45);
+  box-shadow: 0 20px 48px -10px rgba(0, 0, 0, 0.6), 0 0 20px -4px rgba(37, 99, 235, 0.15);
 }
 
 /* Featured Tier: Business */
 .package-card.is-featured {
   background-color: #121929;
-  border-color: rgba(59, 130, 246, 0.55);
-  box-shadow: 0 20px 48px -10px rgba(0, 0, 0, 0.65), 0 0 24px -4px rgba(59, 130, 246, 0.15);
+  border-color: rgba(37, 99, 235, 0.55);
+  box-shadow: 0 20px 48px -10px rgba(0, 0, 0, 0.65), 0 0 24px -4px rgba(37, 99, 235, 0.15);
+}
+
+.package-card.is-featured:hover {
+  border-color: rgba(37, 99, 235, 0.8);
+  box-shadow: 0 24px 56px -8px rgba(0, 0, 0, 0.75), 0 0 32px -4px rgba(37, 99, 235, 0.25);
 }
 
 .package-featured-badge {
@@ -149,6 +156,32 @@
   font-size: 14px;
   line-height: 1.5;
   color: var(--color-text-secondary);
+}
+
+.feat-icon-wrap {
+  width: 24px;
+  height: 24px;
+  border-radius: var(--radius-sm);
+  background-color: rgba(37, 99, 235, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 1px;
+  transition: transform 0.2s var(--motion-ease-standard),
+              background-color 0.2s var(--motion-ease-standard);
+}
+
+.package-card:hover .feat-icon-wrap {
+  background-color: rgba(37, 99, 235, 0.18);
+}
+
+.package-features-list li:hover .feat-icon-wrap {
+  transform: scale(1.15);
+}
+
+.feat-icon {
+  color: var(--color-brand-primary);
 }
 
 .package-features-list li span {

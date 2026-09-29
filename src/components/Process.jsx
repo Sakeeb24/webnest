@@ -9,28 +9,28 @@ export default function Process() {
   const steps = [
     {
       num: '01',
-      title: 'Tell us',
+      title: 'Tell us about your business.',
       subtitle: 'Discovery & Goals',
-      description: 'We learn about your business, target customers, and core offerings through a simple briefing conversation.'
+      description: 'We learn about your business, target customers, and core offerings through a simple, focused briefing conversation.',
     },
     {
       num: '02',
-      title: 'We design',
-      subtitle: 'Architecture & Build',
-      description: 'We engineer the website around your brand — prioritizing mobile speed, clean typography, and clear customer enquiry paths.'
+      title: 'We design the experience.',
+      subtitle: 'Architecture & Design',
+      description: 'We engineer a custom digital presence built around your brand, mobile speed, and customer enquiry paths.',
     },
     {
       num: '03',
-      title: 'You review',
+      title: 'You review and refine.',
       subtitle: 'Staging & Feedback',
-      description: 'You test the private staging link directly on your phone and laptop, request adjustments, and approve the finished site.'
+      description: 'You test the private staging site directly on your phone and laptop, request adjustments, and approve.',
     },
     {
       num: '04',
-      title: 'We launch',
-      subtitle: 'Domain & Go Live',
-      description: 'We point your domain, configure search metadata, verify WhatsApp connectivity, and hand over a live, working website.'
-    }
+      title: 'We launch.',
+      subtitle: 'Domain & Go-Live',
+      description: 'We configure your domain, verify WhatsApp integration, submit search metadata, and hand over your live site.',
+    },
   ];
 
   return (
@@ -44,27 +44,27 @@ export default function Process() {
           viewport={{ once: true, margin: '-40px' }}
           transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
         >
-          <div className="section-badge">
-            <ListOrdered size={14} aria-hidden="true" />
-            <span>Workflow</span>
+          <div className="process-eyebrow">
+            <ListOrdered size={13} className="text-brand" aria-hidden="true" />
+            <span>SIMPLE WORKFLOW</span>
           </div>
           <h2 id="process-heading" className="display-sm process-title">
-            Simple from start to launch.
+            From Idea to Live Website.
           </h2>
           <p className="body-lg process-subtitle">
-            No endless meetings, no technical jargon. A structured 4-step path to getting your business online.
+            A clear, four-step path to getting your business online with zero guesswork.
           </p>
         </motion.div>
 
-        {/* Editorial Linear Roadmap */}
+        {/* Editorial Horizontal Timeline on Desktop, Vertical on Mobile */}
         <div className="process-timeline">
-          <div className="process-timeline-track" aria-hidden="true" />
-          
-          <div className="process-steps-grid">
+          <div className="process-timeline-line" aria-hidden="true" />
+
+          <div className="process-grid">
             {steps.map((st, idx) => (
-              <motion.div
+              <motion.article
                 key={st.num}
-                className="process-step-item"
+                className="process-card"
                 initial={shouldReduceMotion ? false : { opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-40px' }}
@@ -74,17 +74,15 @@ export default function Process() {
                   ease: [0.22, 1, 0.36, 1],
                 }}
               >
-                <div className="process-step-top">
-                  <span className="process-step-num" aria-label={`Step ${st.num}`}>{st.num}</span>
-                  <span className="process-step-node" aria-hidden="true" />
+                <div className="process-card-top">
+                  <span className="process-node" aria-hidden="true" />
+                  <span className="process-num">[ {st.num} ]</span>
                 </div>
 
-                <div className="process-step-body">
-                  <span className="process-step-kicker">{st.subtitle}</span>
-                  <h3 className="heading-md process-step-heading">{st.title}</h3>
-                  <p className="body-sm process-step-text">{st.description}</p>
-                </div>
-              </motion.div>
+                <span className="process-kicker">{st.subtitle}</span>
+                <h3 className="process-card-title">{st.title}</h3>
+                <p className="process-card-text">{st.description}</p>
+              </motion.article>
             ))}
           </div>
         </div>

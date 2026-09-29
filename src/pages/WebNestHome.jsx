@@ -1,14 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
-import TrustStrip from '../components/TrustStrip';
-import Services from '../components/Services';
 import Portfolio from '../components/Portfolio';
+import Services from '../components/Services';
 import Packages from '../components/Packages';
 import Process from '../components/Process';
-import ProblemSection from '../components/ProblemSection';
 import WhyWebNest from '../components/WhyWebNest';
-import Team from '../components/Team';
 import ContactSection from '../components/ContactSection';
 import FinalCTA from '../components/FinalCTA';
 import Footer from '../components/Footer';
@@ -16,9 +13,9 @@ import Footer from '../components/Footer';
 export default function WebNestHome() {
   const [selectedRequirement, setSelectedRequirement] = useState('');
 
-  // Set document title and meta description for SEO
+  // SEO Document Title and Meta Description
   useEffect(() => {
-    document.title = 'WebNest — Modern Websites for Growing Businesses';
+    document.title = 'WebNest — Architectural Digital Experiences & Web Engineering';
   }, []);
 
   const handleOpenEnquiry = (requirement = '') => {
@@ -45,47 +42,40 @@ export default function WebNestHome() {
         Skip to main content
       </a>
 
-      {/* Header & Navigation */}
+      {/* 1. Header & Navigation: Compact, premium, accessible */}
       <Navbar onOpenEnquiry={() => handleOpenEnquiry('General Business Website')} />
 
-      {/* Main Content Landmarks in Client Priority Order */}
+      {/* Main Content Landmarks in Client-Focused Conversion Order */}
       <main id="main-content" tabIndex={-1} style={{ outline: 'none' }}>
-        {/* 1. What WebNest Does */}
+        {/* 2. Hero: Immediate Value Proposition + Editorial Composed Project Previews */}
         <Hero onOpenEnquiry={() => handleOpenEnquiry('General Business Website')} />
-        
-        {/* Quick Studio Highlights */}
-        <TrustStrip />
 
-        {/* 2. What Kind of Websites We Build */}
-        <Services onOpenEnquiry={(serviceTitle) => handleOpenEnquiry(serviceTitle)} />
-
-        {/* 3. Portfolio / Demo Proof (Large previews) */}
+        {/* 3. Portfolio: MOVED HIGHER — Immediate visual proof with alternating magazine layouts */}
         <Portfolio onOpenEnquiry={(projectTitle) => handleOpenEnquiry(`Concept: ${projectTitle}`)} />
 
-        {/* 4. Website Package Scope (Strictly NO pricing numbers) */}
+        {/* 4. Services: Editorial "What We Build" with 4 clear categories */}
+        <Services onOpenEnquiry={(serviceTitle) => handleOpenEnquiry(serviceTitle)} />
+
+        {/* 5. Website Options: 3 Tiers (STARTER, BUSINESS, PREMIUM) with ZERO pricing numbers */}
         <Packages onSelectPackage={(pkgName) => handleOpenEnquiry(`${pkgName} Package`)} />
 
-        {/* 5. Simple Process */}
+        {/* 6. Process: Structured 4-stage horizontal methodology */}
         <Process />
 
-        {/* Context & Studio Principles */}
-        <ProblemSection onOpenEnquiry={() => handleOpenEnquiry('Business Growth Website')} />
+        {/* 7. Why WebNest: 6 concise studio qualities with zero fake statistics */}
         <WhyWebNest />
 
-        {/* Founders / Team Direct Verification */}
-        <Team />
-
-        {/* 6. Contact & WhatsApp Enquiry Flow */}
+        {/* 8. Contact Section: Direct WhatsApp conversion + honest enquiry brief */}
         <ContactSection
           key={selectedRequirement || 'default'}
           defaultRequirement={selectedRequirement}
         />
 
-        {/* Final WhatsApp Call to Action */}
+        {/* 9. Final CTA: Editorial closing section */}
         <FinalCTA onOpenEnquiry={() => handleOpenEnquiry('Start Your Website')} />
       </main>
 
-      {/* Footer */}
+      {/* 10. Footer: Minimal studio footer */}
       <Footer />
     </div>
   );

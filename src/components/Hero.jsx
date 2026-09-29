@@ -1,20 +1,24 @@
 import React from 'react';
-import { ArrowRight, CheckCircle2, Zap, MessageCircle } from 'lucide-react';
+import { ArrowRight, MessageCircle, CheckCircle2, Compass } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { motion, useReducedMotion } from 'motion/react';
 import { BUSINESS_CONFIG, createWhatsAppLink } from '../config/business';
+import './Hero.css';
 
 export default function Hero({ onOpenEnquiry: _onOpenEnquiry = () => {} }) {
-  const whatsappHeroUrl = createWhatsAppLink(BUSINESS_CONFIG.messages.hero);
+  const whatsappHeroUrl = createWhatsAppLink(
+    "Hi WebNest, I'm interested in getting a website for my business. I'd like to know more about your services."
+  );
   const shouldReduceMotion = useReducedMotion();
 
-  // Entrance variants
-  const fadeInVariants = {
-    hidden: shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 },
+  // Entrance variants adhering to 0.45-0.7s duration and 0.06-0.1s stagger
+  const itemVariants = {
+    hidden: shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 22 },
     visible: (customDelay = 0) => ({
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.5,
+        duration: 0.55,
         delay: shouldReduceMotion ? 0 : customDelay,
         ease: [0.22, 1, 0.36, 1],
       },
@@ -23,185 +27,231 @@ export default function Hero({ onOpenEnquiry: _onOpenEnquiry = () => {} }) {
 
   return (
     <section className="hero-section" id="top" aria-labelledby="hero-heading">
-      <div className="container">
+      {/* Background Subtle Studio Grid */}
+      <div className="hero-grid-pattern" aria-hidden="true" />
+      <div className="hero-radial-glow" aria-hidden="true" />
+
+      <div className="container relative-z">
         <div className="hero-grid">
           {/* Hero Content Column */}
           <div className="hero-content">
-            {/* 1. Small eyebrow/label fades upward */}
+            {/* 1. Eyebrow */}
             <motion.div
               className="hero-badge"
-              custom={0.05}
+              custom={0.04}
               initial="hidden"
               animate="visible"
-              variants={fadeInVariants}
+              variants={itemVariants}
             >
               <span className="badge-dot" aria-hidden="true" />
-              <span>Two-Person Modern Web Studio</span>
+              <span>WEB DESIGN FOR MODERN BUSINESSES</span>
             </motion.div>
 
-            {/* 2. Main heading reveals upward */}
+            {/* 2. Main Headline */}
             <motion.h1
               id="hero-heading"
               className="hero-title display-lg"
-              custom={0.16}
+              custom={0.14}
               initial="hidden"
               animate="visible"
-              variants={fadeInVariants}
+              variants={itemVariants}
             >
-              Build Your Business Online.
+              Websites That Make Your Business Look Its Best.
             </motion.h1>
 
-            {/* 3. Supporting text follows */}
+            {/* 3. Supporting Text */}
             <motion.p
               className="hero-description body-lg"
-              custom={0.26}
+              custom={0.24}
               initial="hidden"
               animate="visible"
-              variants={fadeInVariants}
+              variants={itemVariants}
             >
-              Modern, fast and professional websites designed for businesses that want more customers.
+              Modern, responsive websites designed around your business, your customers and the way you want to grow.
             </motion.p>
 
-            {/* 4. CTA buttons appear shortly afterward */}
+            {/* 4. Action CTAs */}
             <motion.div
               className="hero-actions"
-              custom={0.36}
+              custom={0.34}
               initial="hidden"
               animate="visible"
-              variants={fadeInVariants}
+              variants={itemVariants}
             >
-              {/* Primary CTA: WhatsApp direct enquiry flow */}
+              {/* Primary CTA: View Our Work -> Scrolls to Portfolio */}
+              <a
+                href="#work"
+                className="btn btn-primary btn-lg hero-cta-primary"
+                aria-label="View Our Work - Explore realistic website concepts"
+              >
+                <span>View Our Work</span>
+                <ArrowRight size={18} aria-hidden="true" className="arrow-icon" />
+              </a>
+
+              {/* Secondary CTA: Talk to WebNest -> WhatsApp direct */}
               <a
                 href={whatsappHeroUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn btn-primary btn-lg"
-                aria-label="Get Your Website - Start a conversation on WhatsApp"
+                className="btn btn-secondary btn-lg hero-cta-secondary"
+                aria-label={`Talk to WebNest on WhatsApp at ${BUSINESS_CONFIG.whatsapp.displayNumber}`}
               >
-                <span>Get Your Website</span>
-                <ArrowRight size={18} aria-hidden="true" className="arrow-icon" />
-              </a>
-
-              <a href="#work" className="btn btn-secondary btn-lg">
-                <span>View Our Work</span>
+                <MessageCircle size={17} aria-hidden="true" />
+                <span>Talk to WebNest</span>
+                <span className="cta-arrow" aria-hidden="true">→</span>
               </a>
             </motion.div>
 
-            {/* 5. Micro-reassurance items (Strictly NO prices) */}
+            {/* 5. Concise Business Qualities (Strictly NO prices, NO fake stats) */}
             <motion.div
               className="hero-micro-reassurance"
-              custom={0.46}
+              custom={0.44}
               initial="hidden"
               animate="visible"
-              variants={fadeInVariants}
+              variants={itemVariants}
             >
               <div className="reassurance-item">
                 <CheckCircle2 size={16} className="text-brand" aria-hidden="true" />
-                <span>Founder-Crafted Quality</span>
+                <span>Custom Built</span>
               </div>
               <div className="reassurance-item">
                 <CheckCircle2 size={16} className="text-brand" aria-hidden="true" />
-                <span>Fast Delivery</span>
+                <span>Mobile First &amp; Responsive</span>
               </div>
               <div className="reassurance-item">
-                <MessageCircle size={16} className="text-brand" aria-hidden="true" />
-                <span>WhatsApp Direct Line</span>
+                <CheckCircle2 size={16} className="text-brand" aria-hidden="true" />
+                <span>WhatsApp &amp; Maps Ready</span>
               </div>
             </motion.div>
           </div>
 
-          {/* 6. Hero Visual: Layered browser & mobile preview with subtle scale/opacity & floating */}
+          {/* 6. Hero Visual: Editorial Composed Project Showcase */}
           <motion.div
-            className="hero-visual"
-            initial={shouldReduceMotion ? false : { opacity: 0, scale: 0.96, y: 20 }}
+            className="hero-visual-editorial"
+            initial={shouldReduceMotion ? false : { opacity: 0, scale: 0.96, y: 24 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{ duration: 0.65, delay: shouldReduceMotion ? 0 : 0.28, ease: [0.22, 1, 0.36, 1] }}
-            aria-hidden="true"
+            transition={{
+              duration: 0.65,
+              delay: shouldReduceMotion ? 0 : 0.28,
+              ease: [0.22, 1, 0.36, 1],
+            }}
+            aria-label="Showcase preview of WebNest client websites"
           >
-            {/* Desktop Mockup Frame with subtle floating effect */}
+            {/* Primary Featured Project Frame: Only Fish */}
+            <div className="hero-main-card">
+              <div className="hero-card-header">
+                <div className="hero-card-dots" aria-hidden="true">
+                  <span className="dot dot-red" />
+                  <span className="dot dot-yellow" />
+                  <span className="dot dot-green" />
+                </div>
+                <div className="hero-card-address">
+                  <span className="secure-badge">🔒</span>
+                  <span>onlyfish.restaurant</span>
+                </div>
+                <span className="hero-card-tag">NEW DEMO</span>
+              </div>
+
+              <div className="hero-card-screen">
+                <img
+                  src={`${import.meta.env.BASE_URL}portfolio/only-fish/bangda-thali.jpg`}
+                  alt="Only Fish seafood restaurant website preview"
+                  className="hero-card-img"
+                  loading="eager"
+                />
+                <div className="hero-card-overlay">
+                  <div className="hero-card-meta">
+                    <span className="hero-meta-kicker">FEATURED CONCEPT</span>
+                    <h3 className="hero-meta-title">Only Fish</h3>
+                    <p className="hero-meta-sub">Coastal Seafood Restaurant • Dharwad</p>
+                  </div>
+                  <Link
+                    to="/demo/only-fish"
+                    className="hero-card-link-btn"
+                    aria-label="View Only Fish live demo website"
+                  >
+                    <span>View Demo</span>
+                    <ArrowRight size={14} aria-hidden="true" />
+                  </Link>
+                </div>
+              </div>
+            </div>
+
+            {/* Overlapping Companion Card: IronCore Fitness */}
             <motion.div
-              className="mockup-frame"
+              className="hero-companion-card companion-top"
               animate={
                 shouldReduceMotion
                   ? undefined
                   : {
                       y: [0, -6, 0],
                       transition: {
-                        duration: 6,
+                        duration: 5.6,
                         repeat: Infinity,
                         ease: 'easeInOut',
                       },
                     }
               }
             >
-              {/* Browser chrome header */}
-              <div className="mockup-chrome">
-                <div className="mockup-dots">
-                  <span className="mockup-dot red" />
-                  <span className="mockup-dot yellow" />
-                  <span className="mockup-dot green" />
+              <Link to="/demo/ironcore" className="companion-inner" aria-label="Explore IronCore Fitness demo">
+                <div className="companion-img-wrap">
+                  <img
+                    src={`${import.meta.env.BASE_URL}portfolio/ironcore.jpg`}
+                    alt="IronCore Fitness website concept"
+                    className="companion-img"
+                    loading="eager"
+                  />
                 </div>
-                <div className="mockup-address-bar">
-                  <span className="secure-icon">🔒</span>
-                  <span className="address-text">ironcorefitness.demo</span>
+                <div className="companion-info">
+                  <span className="companion-badge">FITNESS &amp; GYM</span>
+                  <span className="companion-title">IronCore Fitness</span>
+                  <span className="companion-arrow">→</span>
                 </div>
-                <div className="mockup-controls">
-                  <span className="speed-badge">
-                    <Zap size={13} fill="#16A34A" color="#16A34A" />
-                    <span>Fast Performance</span>
-                  </span>
-                </div>
-              </div>
-
-              {/* Mockup screen preview */}
-              <div className="mockup-screen">
-                <img
-                  src={`${import.meta.env.BASE_URL}portfolio/ironcore.jpg`}
-                  alt="IronCore Fitness concept preview"
-                  className="mockup-image"
-                  loading="eager"
-                />
-                
-                {/* Overlay pill showing studio craftsmanship */}
-                <div className="mockup-badge-pill">
-                  <span className="pulse-indicator" />
-                  <span>Engineered by WebNest</span>
-                </div>
-              </div>
+              </Link>
             </motion.div>
 
-            {/* Floating Mobile Companion Card */}
+            {/* Overlapping Companion Card: Spice Avenue Dining */}
             <motion.div
-              className="hero-mobile-float"
+              className="hero-companion-card companion-bottom"
               animate={
                 shouldReduceMotion
                   ? undefined
                   : {
                       y: [0, -8, 0],
                       transition: {
-                        duration: 5.2,
+                        duration: 6.2,
                         repeat: Infinity,
                         ease: 'easeInOut',
-                        delay: 0.6,
+                        delay: 0.8,
                       },
                     }
               }
             >
-              <div className="hero-mobile-chrome">
-                <span className="hero-mobile-notch" />
-              </div>
-              <div className="hero-mobile-screen">
-                <img
-                  src={`${import.meta.env.BASE_URL}portfolio/spice-avenue.jpg`}
-                  alt="Spice Avenue mobile concept preview"
-                  className="hero-mobile-img"
-                  loading="eager"
-                />
-                <div className="hero-mobile-tag">
-                  <span>Spice Avenue · Mobile UX</span>
+              <Link to="/demo/spice-avenue" className="companion-inner" aria-label="Explore Spice Avenue restaurant demo">
+                <div className="companion-img-wrap">
+                  <img
+                    src={`${import.meta.env.BASE_URL}portfolio/spice-avenue.jpg`}
+                    alt="Spice Avenue restaurant website concept"
+                    className="companion-img"
+                    loading="eager"
+                  />
                 </div>
-              </div>
+                <div className="companion-info">
+                  <span className="companion-badge">CONTEMPORARY BISTRO</span>
+                  <span className="companion-title">Spice Avenue</span>
+                  <span className="companion-arrow">→</span>
+                </div>
+              </Link>
             </motion.div>
+
+            {/* Studio Badge Chip: Urban Cuts */}
+            <div className="hero-floating-chip">
+              <Compass size={14} className="text-brand" aria-hidden="true" />
+              <span>Plus: Urban Cuts Grooming Studio</span>
+              <Link to="/demo/urban-cuts" className="chip-link" aria-label="Explore Urban Cuts demo">
+                Demo →
+              </Link>
+            </div>
           </motion.div>
         </div>
       </div>

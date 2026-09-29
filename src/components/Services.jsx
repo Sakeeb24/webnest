@@ -4,141 +4,121 @@ import { motion, useReducedMotion } from 'motion/react';
 import { BUSINESS_CONFIG, createWhatsAppLink } from '../config/business';
 import './Services.css';
 
-export default function Services({ onOpenEnquiry }) {
+export default function Services({ onOpenEnquiry: _onOpenEnquiry = () => {} }) {
   const shouldReduceMotion = useReducedMotion();
 
-  const capabilities = [
+  const services = [
     {
       num: '01',
       title: 'Business Websites',
-      description: 'Professional multi-section websites for local and growing businesses looking to establish credibility and capture inbound customer inquiries.',
-      tags: ['Local SEO Ready', 'Mobile Optimized', 'Contact & Maps']
+      description: 'Professional websites designed around your business.',
+      detail: 'Tailored digital headquarters that solidify your commercial legitimacy, build immediate trust with prospective customers, and make contacting you effortless.',
+      highlights: ['Local Search Optimization', 'Mobile-First Layout', 'Direct WhatsApp Enquiry Integration'],
     },
     {
       num: '02',
-      title: 'Landing Pages',
-      description: 'High-focus single-page sites engineered around a specific campaign outcome, promotional launch, or high-intent advertising funnel.',
-      tags: ['Frictionless CTAs', 'Fast Load Times', 'Direct WhatsApp Leads']
+      title: 'Restaurant & Café Websites',
+      description: 'Menus, galleries, locations and enquiry experiences.',
+      detail: 'Sensory digital extensions of your physical venue. Highlight fresh culinary specialties, seasonal menus, and clear location directions for hungry diners.',
+      highlights: ['Visual Digital Menus', 'Table Reservation Inquiries', 'One-Tap Google Maps Directions'],
     },
     {
       num: '03',
-      title: 'Restaurant & Hospitality',
-      description: 'Sensory dining websites featuring visual digital menus, operating hours, seamless table reservation inquiries, and direction routing.',
-      tags: ['Visual Menus', 'Reservation Inquiries', 'Directions & Valet']
+      title: 'Fitness & Service Websites',
+      description: 'Services, programs, enquiries and customer information.',
+      detail: 'High-clarity platforms designed for active appointment scheduling, transparent service options, trainer portfolios, and frictionless client intake.',
+      highlights: ['Service Schedules & Timetables', 'Stylist & Trainer Spotlights', 'Frictionless Booking Inquiries'],
     },
     {
       num: '04',
-      title: 'Gym & Fitness Studios',
-      description: 'Performance-focused fitness websites showcasing membership plans, coach credentials, facility tours, and qualified membership inquiries.',
-      tags: ['Membership Tiers', 'Timetable Architecture', 'Membership Inquiries']
+      title: 'Custom Websites',
+      description: 'Unique digital experiences built around your requirements.',
+      detail: 'Bespoke web architecture engineered to your exact operational specifications, featuring tailored interactive logic, third-party integrations, and unique brand motion.',
+      highlights: ['Bespoke Interactions & Motion', 'Specialized Workflows', 'Domain & Analytics Setup'],
     },
-    {
-      num: '05',
-      title: 'Portfolios & Consulting',
-      description: 'Refined presentation of work, credentials, and client case studies for independent professionals, consultants, and creative studios.',
-      tags: ['Editorial Case Studies', 'Client Inquiry Flows', 'Credentials Showcase']
-    },
-    {
-      num: '06',
-      title: 'Custom Applications',
-      description: 'Bespoke web applications with custom calculation tools, specialized enquiry workflows, or third-party service integrations.',
-      tags: ['Custom Workflows', 'Tailored UI Logic', 'API Integrations']
-    }
   ];
 
-  const whatsappGeneralUrl = createWhatsAppLink(BUSINESS_CONFIG.messages.main);
+  const whatsappUrl = createWhatsAppLink(BUSINESS_CONFIG.messages.main);
 
   return (
     <section className="section services-editorial-section" id="services" aria-labelledby="services-heading">
       <div className="container">
-        <div className="services-editorial-layout">
-          {/* Left Column: Sticky Editorial Introduction */}
-          <motion.div
-            className="services-sticky-sidebar"
-            initial={shouldReduceMotion ? false : { opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-40px' }}
-            transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <div className="section-badge">
-              <Sparkles size={14} aria-hidden="true" />
-              <span>Studio Capabilities</span>
-            </div>
-            
-            <h2 id="services-heading" className="display-sm services-editorial-title">
-              Websites built for commercial impact.
+        {/* Section Header */}
+        <div className="services-section-header">
+          <div className="services-eyebrow">
+            <Sparkles size={13} className="text-brand" aria-hidden="true" />
+            <span>STUDIO CAPABILITIES</span>
+          </div>
+          <div className="services-header-split">
+            <h2 id="services-heading" className="display-sm services-title">
+              What We Build
             </h2>
-            
-            <p className="body-lg services-editorial-desc">
-              Every website we build is tailored around your business model — whether that means booking salon chairs, filling restaurant tables, or generating steady local customer calls.
+            <p className="body-lg services-subtitle">
+              From focused business websites to fully custom digital experiences.
             </p>
-
-            <div className="services-sidebar-cta">
-              <a
-                href={whatsappGeneralUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn btn-primary"
-                aria-label={`Discuss your website requirement on WhatsApp at ${BUSINESS_CONFIG.whatsapp.displayNumber}`}
-              >
-                <span>Discuss Your Project</span>
-                <ArrowRight size={16} aria-hidden="true" className="arrow-icon" />
-              </a>
-              <span className="services-cta-subtext">
-                Direct founder response · {BUSINESS_CONFIG.whatsapp.displayNumber}
-              </span>
-            </div>
-          </motion.div>
-
-          {/* Right Column: Editorial Numbered Capability Rows */}
-          <div className="services-capabilities-list">
-            {capabilities.map((cap, idx) => (
-              <motion.article
-                key={cap.num}
-                className="capability-row"
-                initial={shouldReduceMotion ? false : { opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-40px' }}
-                transition={{
-                  duration: 0.5,
-                  delay: shouldReduceMotion ? 0 : (idx % 3) * 0.08,
-                  ease: [0.22, 1, 0.36, 1],
-                }}
-              >
-                <div className="capability-num" aria-hidden="true">
-                  {cap.num}
-                </div>
-
-                <div className="capability-content">
-                  <div className="capability-header">
-                    <h3 className="heading-md capability-title">{cap.title}</h3>
-                    <button
-                      type="button"
-                      className="capability-enquire-btn"
-                      onClick={() => onOpenEnquiry(cap.title)}
-                      aria-label={`Enquire about ${cap.title}`}
-                    >
-                      <span>Enquire</span>
-                      <ArrowRight size={15} aria-hidden="true" className="arrow-icon" />
-                    </button>
-                  </div>
-
-                  <p className="body-md capability-desc">
-                    {cap.description}
-                  </p>
-
-                  <div className="capability-tags">
-                    {cap.tags.map((tag, tIdx) => (
-                      <span key={tIdx} className="capability-tag-pill">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </motion.article>
-            ))}
           </div>
         </div>
+
+        {/* Editorial Services Grid */}
+        <div className="services-grid">
+          {services.map((srv, idx) => (
+            <motion.article
+              key={srv.num}
+              className="service-card"
+              initial={shouldReduceMotion ? false : { opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-40px' }}
+              transition={{
+                duration: 0.5,
+                delay: shouldReduceMotion ? 0 : idx * 0.08,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+            >
+              <div className="service-card-top">
+                <span className="service-num">[ {srv.num} ]</span>
+                <span className="service-card-indicator" aria-hidden="true" />
+              </div>
+
+              <h3 className="service-card-title">{srv.title}</h3>
+              <p className="service-card-desc">{srv.description}</p>
+              <p className="service-card-detail">{srv.detail}</p>
+
+              <div className="service-highlights">
+                <ul>
+                  {srv.highlights.map((item, hIdx) => (
+                    <li key={hIdx}>
+                      <span className="bullet text-brand" aria-hidden="true">+</span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </motion.article>
+          ))}
+        </div>
+
+        {/* Bottom Fast Track Bar */}
+        <motion.div
+          className="services-footer-bar"
+          initial={shouldReduceMotion ? false : { opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.45 }}
+        >
+          <span className="services-footer-text">
+            Have a unique business requirement not listed above?
+          </span>
+          <a
+            href={whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="services-footer-link"
+            aria-label="Discuss custom website requirement on WhatsApp"
+          >
+            <span>Discuss your custom project with our founders</span>
+            <ArrowRight size={15} aria-hidden="true" />
+          </a>
+        </motion.div>
       </div>
     </section>
   );

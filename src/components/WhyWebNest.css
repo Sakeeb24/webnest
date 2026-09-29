@@ -1,78 +1,128 @@
+/* ==========================================================================
+   Why WebNest — Studio Standards Styling
+   ========================================================================== */
 .why-editorial-section {
-  padding: var(--space-24) 0;
+  padding: 104px 0;
   background-color: var(--color-bg-primary);
-  border-bottom: 1px solid var(--color-border-subtle);
+  border-bottom: 1px solid var(--color-border-default);
+  position: relative;
 }
 
-.why-editorial-heading {
-  margin-top: var(--space-4);
-  margin-bottom: var(--space-4);
-  letter-spacing: -0.025em;
-  color: var(--color-text-primary);
-}
-
-.why-editorial-sub {
-  color: var(--color-text-secondary);
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-.why-principles-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-12);
-  margin-top: var(--space-16);
-}
-
-.why-principle-item {
-  display: flex;
-  flex-direction: column;
-  padding-top: var(--space-6);
-  border-top: 1px solid var(--color-border-subtle);
-  transition: transform var(--motion-duration-normal) var(--motion-ease-standard);
-}
-
-.why-principle-item:hover {
-  transform: translateY(-2px);
-}
-
-.why-principle-num {
-  font-size: 14px;
-  font-weight: 700;
+.why-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 5px 12px;
+  background-color: rgba(30, 41, 59, 0.5);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-full);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
   color: var(--color-brand-primary);
-  font-family: var(--font-family-primary);
-  margin-bottom: var(--space-3);
-  letter-spacing: 0.05em;
+  margin-bottom: var(--space-4);
+  text-transform: uppercase;
 }
 
-.why-principle-title {
-  font-size: 18px;
+.why-title {
+  color: #F8FAFC;
   font-weight: 700;
-  letter-spacing: -0.015em;
-  color: var(--color-text-primary);
+  letter-spacing: -0.025em;
   margin-bottom: var(--space-3);
 }
 
-.why-principle-desc {
+.why-subtitle {
   color: var(--color-text-secondary);
+  max-width: 680px;
+  margin: 0 auto;
+  font-size: 18px;
   line-height: 1.6;
 }
 
-@media (max-width: 1023px) {
-  .why-principles-grid {
+/* Qualities Grid */
+.why-qualities-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 56px;
+}
+
+.why-quality-card {
+  background-color: #0E1422;
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-lg);
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+  transition: border-color var(--motion-duration-normal) var(--motion-ease-standard),
+              transform var(--motion-duration-fast) var(--motion-ease-standard);
+}
+
+.why-quality-card:hover {
+  border-color: rgba(59, 130, 246, 0.4);
+  transform: translateY(-2px);
+}
+
+.quality-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.quality-code {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--color-brand-primary);
+}
+
+.quality-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  background-color: var(--color-border-strong);
+  transition: background-color var(--motion-duration-fast) var(--motion-ease-standard);
+}
+
+.why-quality-card:hover .quality-dot {
+  background-color: var(--color-brand-primary);
+  box-shadow: 0 0 8px var(--color-brand-primary);
+}
+
+.quality-title {
+  font-size: 19px;
+  font-weight: 700;
+  color: #F8FAFC;
+  margin-bottom: 8px;
+  letter-spacing: -0.015em;
+}
+
+.quality-desc {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .why-qualities-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: var(--space-8);
+    gap: 20px;
   }
 }
 
-@media (max-width: 639px) {
+@media (max-width: 640px) {
   .why-editorial-section {
-    padding: var(--space-16) 0;
+    padding: 64px 0;
   }
 
-  .why-principles-grid {
+  .why-qualities-grid {
     grid-template-columns: 1fr;
-    gap: var(--space-6);
-    margin-top: var(--space-10);
+    gap: 16px;
+  }
+
+  .why-title {
+    font-size: 28px;
   }
 }

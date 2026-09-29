@@ -45,13 +45,10 @@ export default function Navbar({ onOpenEnquiry: _onOpenEnquiry = () => {} }) {
   }, [mobileMenuOpen]);
 
   const navLinks = [
-    { label: 'Home', href: '#top' },
-    { label: 'Services', href: '#services' },
     { label: 'Work', href: '#work' },
-    { label: 'Packages', href: '#packages' },
+    { label: 'Services', href: '#services' },
     { label: 'Process', href: '#process' },
-    { label: 'Team', href: '#team' },
-    { label: 'Contact', href: '#contact' },
+    { label: 'About', href: '#why' },
   ];
 
   const handleLinkClick = () => {
@@ -76,7 +73,7 @@ export default function Navbar({ onOpenEnquiry: _onOpenEnquiry = () => {} }) {
           <a href="#top" className="navbar-brand" aria-label="WebNest Home">
             <span className="brand-icon" aria-hidden="true">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect width="24" height="24" rx="6" fill="#2563EB" />
+                <rect width="24" height="24" rx="6" fill="#3B82F6" />
                 <path d="M6 16L12 8L18 16" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
                 <path d="M9 16L12 12L15 16" stroke="#93C5FD" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
@@ -84,7 +81,7 @@ export default function Navbar({ onOpenEnquiry: _onOpenEnquiry = () => {} }) {
             <span className="brand-text">WebNest</span>
           </a>
 
-          {/* Desktop Navigation */}
+          {/* Desktop Navigation (Editorial 4-Link) */}
           <nav className="desktop-nav" aria-label="Main Navigation">
             <ul className="nav-list">
               {navLinks.map((link) => (
@@ -97,17 +94,15 @@ export default function Navbar({ onOpenEnquiry: _onOpenEnquiry = () => {} }) {
             </ul>
           </nav>
 
-          {/* Desktop CTA */}
+          {/* Desktop CTA: Start a Project -> scrolls to #contact */}
           <div className="navbar-actions">
             <a
-              href={whatsappDefaultUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn btn-primary btn-sm"
-              aria-label={`Chat on WhatsApp with WebNest at ${BUSINESS_CONFIG.whatsapp.displayNumber}`}
+              href="#contact"
+              className="btn btn-primary btn-sm navbar-cta"
+              aria-label="Start a Project with WebNest"
             >
-              <MessageCircle size={15} aria-hidden="true" />
-              <span>Chat on WhatsApp</span>
+              <span>Start a Project</span>
+              <span className="cta-arrow" aria-hidden="true">→</span>
             </a>
 
             {/* Mobile Menu Toggle Button */}
@@ -120,7 +115,7 @@ export default function Navbar({ onOpenEnquiry: _onOpenEnquiry = () => {} }) {
               aria-label={mobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             >
-              {mobileMenuOpen ? <X size={24} aria-hidden="true" /> : <Menu size={24} aria-hidden="true" />}
+              {mobileMenuOpen ? <X size={22} aria-hidden="true" /> : <Menu size={22} aria-hidden="true" />}
             </button>
           </div>
         </div>

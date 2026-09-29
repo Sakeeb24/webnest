@@ -1,42 +1,42 @@
 import React from 'react';
-import { HeartHandshake } from 'lucide-react';
+import { ShieldCheck } from 'lucide-react';
 import { motion, useReducedMotion } from 'motion/react';
 import './WhyWebNest.css';
 
 export default function WhyWebNest() {
   const shouldReduceMotion = useReducedMotion();
 
-  const principles = [
+  const qualities = [
     {
-      num: '01',
-      title: 'Fast Turnaround',
-      description: 'Modern development tools and streamlined workflows allow us to build, test, and launch your website without months of bureaucratic delays.'
+      code: '01',
+      title: 'Modern Design',
+      description: 'Clean typography, balanced whitespace, and visual prestige tailored to your specific brand identity.',
     },
     {
-      num: '02',
-      title: 'Custom Brand Identity',
-      description: 'Every site is tailored specifically to your business, clientele, and service model — avoiding recycled template looks.'
+      code: '02',
+      title: 'Mobile First',
+      description: 'Built and tested for phone screens where over 80% of local customers discover services.',
     },
     {
-      num: '03',
-      title: 'Mobile-First Architecture',
-      description: 'Over 80% of local customers discover services on their phones. We prioritize thumb-friendly navigation, instant tap-to-call, and speed.'
+      code: '03',
+      title: 'Responsive',
+      description: 'Seamless viewing and interaction across laptops, iPads, tablets, and smartphones.',
     },
     {
-      num: '04',
-      title: 'Direct Founder Communication',
-      description: 'No account managers, sales intermediaries, or agency runaround. You work directly with the developers building your site.'
+      code: '04',
+      title: 'WhatsApp Ready',
+      description: 'Direct 1-tap customer conversation links with tailored inquiry prefilled messages.',
     },
     {
-      num: '05',
-      title: 'Clear Scope & Milestones',
-      description: 'Well-defined deliverables with zero ambiguity, locking contracts, or unexpected recurring subscription traps.'
+      code: '05',
+      title: 'Google Maps',
+      description: 'Integrated location pins and direction routing so local customers find your venue immediately.',
     },
     {
-      num: '06',
-      title: 'Reliable Post-Launch Support',
-      description: 'We don’t disappear after go-live. We assist with domain setup, menu/hours updates, and technical adjustments as your business grows.'
-    }
+      code: '06',
+      title: 'Custom Built',
+      description: 'Engineered specifically for your business model with clean code, sub-second speed, and zero templates.',
+    },
   ];
 
   return (
@@ -50,37 +50,40 @@ export default function WhyWebNest() {
           viewport={{ once: true, margin: '-40px' }}
           transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
         >
-          <div className="section-badge">
-            <HeartHandshake size={14} aria-hidden="true" />
-            <span>Studio Principles</span>
+          <div className="why-eyebrow">
+            <ShieldCheck size={13} className="text-brand" aria-hidden="true" />
+            <span>STUDIO STANDARDS</span>
           </div>
-          <h2 id="why-heading" className="display-sm why-editorial-heading">
-            Why businesses choose WebNest
+          <h2 id="why-heading" className="display-sm why-title">
+            Built for Businesses. Designed to Be Remembered.
           </h2>
-          <p className="body-lg why-editorial-sub">
-            We are an independent two-person web studio. We focus on craft, performance, and commercial utility for real businesses.
+          <p className="body-lg why-subtitle">
+            We focus on clear design, responsive experiences and websites that make it easy for customers to discover and contact your business.
           </p>
         </motion.div>
 
-        {/* Editorial Feature Grid */}
-        <div className="why-principles-grid">
-          {principles.map((p, idx) => (
-            <motion.div
-              key={p.num}
-              className="why-principle-item"
-              initial={shouldReduceMotion ? false : { opacity: 0, y: 24 }}
+        {/* 6 Concise Qualities Grid (No fake claims or stats) */}
+        <div className="why-qualities-grid">
+          {qualities.map((item, idx) => (
+            <motion.article
+              key={item.code}
+              className="why-quality-card"
+              initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-40px' }}
+              viewport={{ once: true, margin: '-30px' }}
               transition={{
-                duration: 0.5,
-                delay: shouldReduceMotion ? 0 : (idx % 3) * 0.1,
+                duration: 0.45,
+                delay: shouldReduceMotion ? 0 : (idx % 3) * 0.08,
                 ease: [0.22, 1, 0.36, 1],
               }}
             >
-              <span className="why-principle-num" aria-hidden="true">{p.num}</span>
-              <h3 className="heading-sm why-principle-title">{p.title}</h3>
-              <p className="body-sm why-principle-desc">{p.description}</p>
-            </motion.div>
+              <div className="quality-card-top">
+                <span className="quality-code">[ {item.code} ]</span>
+                <span className="quality-dot" aria-hidden="true" />
+              </div>
+              <h3 className="quality-title">{item.title}</h3>
+              <p className="quality-desc">{item.description}</p>
+            </motion.article>
           ))}
         </div>
       </div>

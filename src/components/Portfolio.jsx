@@ -1,87 +1,87 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, ExternalLink, Info, Layers, Check } from 'lucide-react';
+import { ArrowRight, Info, Check } from 'lucide-react';
 import { motion, useReducedMotion } from 'motion/react';
 import ProjectModal from './ProjectModal';
 import './Portfolio.css';
 
-export default function Portfolio({ onOpenEnquiry = () => {} }) {
+export default function Portfolio({ onOpenEnquiry: _onOpenEnquiry = () => {} }) {
   const [selectedProject, setSelectedProject] = useState(null);
   const shouldReduceMotion = useReducedMotion();
 
   const projects = [
     {
+      id: 'only-fish',
+      code: '01',
+      title: 'Only Fish',
+      category: 'Seafood Restaurant',
+      tagline: 'Coastal Seafood Restaurant • Dharwad',
+      route: '/demo/only-fish',
+      image: `${import.meta.env.BASE_URL}portfolio/only-fish/bangda-thali.jpg`,
+      headline: 'Authentic coastal seafood dining experience with digital menu, dish showcases, direct WhatsApp ordering, and local directions.',
+      deliverables: [
+        'Curated coastal seafood & regional thali menu',
+        'Direct WhatsApp ordering and availability',
+        'Google Maps location routing for Dharwad diners',
+        'Dine-in, Takeaway & No-Contact delivery options',
+      ],
+      layout: 'image-left',
+    },
+    {
       id: 'ironcore',
+      code: '02',
       title: 'IronCore Fitness',
-      kicker: 'Fitness & Strength Club',
-      category: 'Fitness Website Concept',
-      businessType: 'Strength & Conditioning Facility',
+      category: 'Fitness & Gym',
+      tagline: 'Strength & Conditioning Facility',
       route: '/demo/ironcore',
       image: `${import.meta.env.BASE_URL}portfolio/ironcore.jpg`,
-      headline: 'A performance-focused gym website built around strong typography, membership presentation, and qualified lead conversion.',
-      fullDescription: 'Designed for a high-intensity boutique training facility. The structure prioritizes easy schedule exploration, trainer credentials, membership plan comparisons, and a frictionless membership enquiry workflow.',
-      features: [
+      headline: 'High-octane athletic dark mode website featuring real-time training schedules, trainer credentials, and membership enquiry funnels.',
+      deliverables: [
         'Interactive membership tier selection',
         'Weekly training discipline breakdowns',
         'Certified coach credential showcases',
-        '1-tap membership enquiry WhatsApp flow'
-      ]
+        '1-tap membership enquiry WhatsApp flow',
+      ],
+      layout: 'image-right',
     },
     {
       id: 'spice-avenue',
+      code: '03',
       title: 'Spice Avenue',
-      kicker: 'Artisan Contemporary Dining',
-      category: 'Restaurant Website Concept',
-      businessType: 'Modern Italian & Contemporary Dining',
+      category: 'Restaurant & Dining',
+      tagline: 'Contemporary Italian & Artisan Dining',
       route: '/demo/spice-avenue',
       image: `${import.meta.env.BASE_URL}portfolio/spice-avenue.jpg`,
-      headline: 'A warm, editorial dining website featuring sensory food photography, digital menus, and table reservation enquiries.',
-      fullDescription: 'Crafted for an upscale dining establishment to make table enquiries and menu browsing delightful on mobile screens. Built with warm ambient tones, allergen flags, and direct Google Maps routing.',
-      features: [
+      headline: 'Warm, sensory culinary dining website celebrating vibrant spices, curated tasting menus, and seamless table reservation enquiries.',
+      deliverables: [
         'Categorized digital dinner & cocktail menu',
         'Interactive table reservation enquiry module',
         'Chef signature dish showcases & story',
-        'One-click Google Maps location & valet directions'
-      ]
+        'One-click Google Maps location & valet directions',
+      ],
+      layout: 'image-left',
     },
     {
       id: 'urban-cuts',
+      code: '04',
       title: 'Urban Cuts',
-      kicker: 'Editorial Grooming Atelier',
-      category: 'Salon Website Concept',
-      businessType: 'Modern Grooming & Hair Studio',
+      category: 'Salon & Grooming',
+      tagline: 'Modern Grooming & Hair Studio',
       route: '/demo/urban-cuts',
       image: `${import.meta.env.BASE_URL}portfolio/urban-cuts.jpg`,
-      headline: 'An editorial salon website with architectural travertine styling, clear service cards, and stylist scheduling.',
-      fullDescription: 'Engineered for a modern boutique grooming studio. Emphasizes visual style consistency, transparent service menus, stylist portfolios, and interactive appointment scheduling.',
-      features: [
+      headline: 'Monochrome architectural grooming studio portal with transparent service menus, stylist lookbooks, and mobile appointment booking.',
+      deliverables: [
         'Clear haircut, styling & grooming service lists',
         'Stylist lookbook gallery with portfolio previews',
         'Mobile-first appointment scheduling module',
-        'Operating schedule with real-time status'
-      ]
+        'Operating schedule with real-time status',
+      ],
+      layout: 'image-right',
     },
-    {
-      id: 'only-fish',
-      title: 'Only Fish',
-      kicker: 'Coastal Seafood Restaurant',
-      category: 'Seafood Restaurant Website Concept',
-      businessType: 'Seafood Restaurant • Dharwad',
-      route: '/demo/only-fish',
-      image: `${import.meta.env.BASE_URL}portfolio/only-fish.svg`,
-      headline: 'A dedicated restaurant website concept designed around menu, food and dining experience.',
-      fullDescription: 'Crafted for a local coastal seafood restaurant in Dharwad. Prioritizes fresh catch showcases, regional fish thalis, direct WhatsApp communication, and clear location directions without complex ordering apps.',
-      features: [
-        'Curated coastal seafood & regional thali menu',
-        'Direct WhatsApp contact with restaurant',
-        'Google Maps location routing for Dharwad diners',
-        'Clear Dine-in, Takeaway & No-Contact delivery options'
-      ]
-    }
   ];
 
   return (
-    <section className="section portfolio-showcase-section" id="work" aria-labelledby="portfolio-heading">
+    <section className="section portfolio-editorial-section" id="work" aria-labelledby="portfolio-heading">
       <div className="container">
         {/* Section Header */}
         <motion.div
@@ -91,145 +91,132 @@ export default function Portfolio({ onOpenEnquiry = () => {} }) {
           viewport={{ once: true, margin: '-40px' }}
           transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
         >
-          <div className="section-badge">
-            <Layers size={14} aria-hidden="true" />
-            <span>Interactive Portfolio</span>
+          <div className="portfolio-section-eyebrow">
+            <span className="eyebrow-indicator" aria-hidden="true" />
+            <span>SELECTED WORKS [04]</span>
           </div>
           <h2 id="portfolio-heading" className="display-sm portfolio-heading-title">
-            Built for businesses like yours.
+            See What We Build.
           </h2>
-          <p className="body-lg portfolio-heading-desc">
-            Experience our work firsthand. Click <strong>View Demo</strong> to test complete, interactive websites crafted for real-world commercial scenarios.
+          <p className="body-lg portfolio-subtitle">
+            Realistic website concepts designed for real businesses.
           </p>
         </motion.div>
 
-        {/* Large Editorial Project Previews */}
-        <div className="case-studies-list">
-          {projects.map((proj, idx) => (
-            <motion.article
-              key={proj.id}
-              className={`case-study-item ${idx % 2 !== 0 ? 'is-reversed' : ''}`}
-              initial={shouldReduceMotion ? false : { opacity: 0, y: 36 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-60px' }}
-              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            >
-              {/* Image Showcase Column with clip-path masked reveal */}
-              <motion.div
-                className="case-study-visual"
-                initial={
-                  shouldReduceMotion
-                    ? false
-                    : { clipPath: 'inset(6% 0% 6% 0%)', opacity: 0.85 }
-                }
-                whileInView={{ clipPath: 'inset(0% 0% 0% 0%)', opacity: 1 }}
-                viewport={{ once: true, margin: '-50px' }}
-                transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
-              >
-                <Link
-                  to={proj.route}
-                  className="case-study-img-link"
-                  aria-label={`Open live demo website for ${proj.title}`}
-                >
-                  <div className="case-study-browser-bar">
-                    <div className="case-study-dots">
-                      <span className="dot red" />
-                      <span className="dot yellow" />
-                      <span className="dot green" />
-                    </div>
-                    <span className="case-study-url">{proj.id}.demo</span>
-                    <span className="case-study-status">Live Demo</span>
-                  </div>
+        {/* Alternating Editorial Project Showcases */}
+        <div className="portfolio-projects-stack">
+          {projects.map((project, idx) => {
+            const isImageLeft = project.layout === 'image-left';
 
-                  <div className="case-study-img-wrapper">
-                    <img
-                      src={proj.image}
-                      alt={`${proj.title} website preview`}
-                      className="case-study-thumb"
-                      loading="lazy"
-                    />
-                    <div className="case-study-hover-overlay">
-                      <span className="case-study-hover-btn">
-                        <span>Launch Live Demo</span>
-                        <ExternalLink size={16} aria-hidden="true" />
-                      </span>
-                    </div>
-                  </div>
-                </Link>
-              </motion.div>
-
-              {/* Text & Meta Column */}
-              <motion.div
-                className="case-study-details"
-                initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
+            return (
+              <motion.article
+                key={project.id}
+                className={`portfolio-item ${isImageLeft ? 'layout-image-left' : 'layout-image-right'}`}
+                initial={shouldReduceMotion ? false : { opacity: 0, y: 32 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-50px' }}
+                viewport={{ once: true, margin: '-60px' }}
                 transition={{
-                  duration: 0.55,
-                  delay: shouldReduceMotion ? 0 : 0.12,
+                  duration: 0.6,
+                  delay: shouldReduceMotion ? 0 : idx * 0.08,
                   ease: [0.22, 1, 0.36, 1],
                 }}
               >
-                <div className="case-study-badges">
-                  <span className="badge badge-brand">{proj.category}</span>
-                  <span className="badge badge-neutral">Interactive Demo</span>
+                {/* Visual Column */}
+                <div className="portfolio-visual-col">
+                  <div className="portfolio-browser-mockup">
+                    <div className="portfolio-mockup-bar">
+                      <div className="mockup-bar-dots" aria-hidden="true">
+                        <span className="dot dot-red" />
+                        <span className="dot dot-yellow" />
+                        <span className="dot dot-green" />
+                      </div>
+                      <span className="mockup-url-label">webnest.studio{project.route}</span>
+                      <span className="mockup-live-pill">LIVE CONCEPT</span>
+                    </div>
+
+                    <div className="portfolio-image-container">
+                      <img
+                        src={project.image}
+                        alt={`${project.title} - ${project.category} website preview`}
+                        className="portfolio-project-image"
+                        loading="lazy"
+                      />
+                      <div className="portfolio-image-scrim" />
+                    </div>
+                  </div>
                 </div>
 
-                <div className="case-study-brand-kicker">{proj.kicker}</div>
-                <h3 className="display-xs case-study-title">{proj.title}</h3>
-                
-                <p className="body-lg case-study-headline">
-                  {proj.headline}
-                </p>
+                {/* Content Column */}
+                <div className="portfolio-content-col">
+                  <div className="portfolio-meta-header">
+                    <span className="portfolio-code">[ {project.code} // PROJECT ]</span>
+                    <span className="portfolio-category-pill">{project.category}</span>
+                  </div>
 
-                <ul className="case-study-features" aria-label={`Key features of ${proj.title}`}>
-                  {proj.features.map((feat, fIdx) => (
-                    <li key={fIdx} className="case-study-feat-item">
-                      <Check size={16} className="text-brand" aria-hidden="true" />
-                      <span>{feat}</span>
-                    </li>
-                  ))}
-                </ul>
+                  <h3 className="portfolio-project-title">{project.title}</h3>
+                  <p className="portfolio-project-tagline">{project.tagline}</p>
 
-                <div className="case-study-actions">
-                  <Link
-                    to={proj.route}
-                    className="btn btn-primary"
-                    aria-label={`View Demo of ${proj.title}`}
-                  >
-                    <span>View Demo</span>
-                    <ArrowRight size={16} aria-hidden="true" className="arrow-icon" />
-                  </Link>
+                  <p className="portfolio-project-desc">{project.headline}</p>
 
-                  <button
-                    type="button"
-                    className="btn btn-secondary"
-                    onClick={() => setSelectedProject(proj)}
-                    aria-label={`View architectural details of ${proj.title}`}
-                  >
-                    <Info size={15} aria-hidden="true" />
-                    <span>Specs</span>
-                  </button>
+                  {/* Key Deliverables */}
+                  <div className="portfolio-deliverables-list">
+                    <span className="deliverables-heading">CORE CAPABILITIES</span>
+                    <ul>
+                      {project.deliverables.map((item, dIdx) => (
+                        <li key={dIdx}>
+                          <Check size={14} className="text-brand" aria-hidden="true" />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  {/* Actions */}
+                  <div className="portfolio-actions">
+                    <Link
+                      to={project.route}
+                      className="btn btn-primary portfolio-demo-btn"
+                      aria-label={`View live demo website for ${project.title}`}
+                    >
+                      <span>View Demo</span>
+                      <ArrowRight size={16} aria-hidden="true" className="arrow-icon" />
+                    </Link>
+
+                    <button
+                      type="button"
+                      className="btn btn-secondary portfolio-details-btn"
+                      onClick={() => setSelectedProject(project)}
+                      aria-label={`View detailed project scope for ${project.title}`}
+                    >
+                      <Info size={15} aria-hidden="true" />
+                      <span>Project Scope</span>
+                    </button>
+                  </div>
                 </div>
-              </motion.div>
-            </motion.article>
-          ))}
-        </div>
-
-        {/* Authenticity Disclaimer (No Pricing Reference) */}
-        <div className="portfolio-concept-note text-center">
-          <p className="caption">
-            * Note: These are complete, browsable web applications engineered by WebNest as demonstration concepts. All business entities, staff, menus, and service scopes are representations to showcase digital design, speed, and conversion workflows.
-          </p>
+              </motion.article>
+            );
+          })}
         </div>
       </div>
 
-      {/* Detail Specs Modal */}
+      {/* Detail Modal */}
       {selectedProject && (
         <ProjectModal
-          project={selectedProject}
+          project={{
+            ...selectedProject,
+            kicker: selectedProject.category,
+            businessType: selectedProject.tagline,
+            features: selectedProject.deliverables,
+            fullDescription: selectedProject.headline,
+          }}
           onClose={() => setSelectedProject(null)}
-          onRequestSimilar={(projectTitle) => onOpenEnquiry(projectTitle)}
+          onOpenEnquiry={(_title) => {
+            setSelectedProject(null);
+            const contactEl = document.getElementById('contact');
+            if (contactEl) {
+              contactEl.scrollIntoView({ behavior: 'smooth' });
+            }
+          }}
         />
       )}
     </section>

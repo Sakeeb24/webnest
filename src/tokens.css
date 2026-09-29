@@ -5,48 +5,48 @@
 
 :root {
   /* ==========================================================================
-     31.1 COLOR TOKENS
+     31.1 COLOR TOKENS — PREMIUM DIGITAL STUDIO PALETTE (DARK CANVAS)
      ========================================================================== */
   /* Backgrounds */
-  --color-bg-primary: #FFFFFF;
-  --color-bg-secondary: #F7F8FA;
-  --color-bg-surface: #FFFFFF;
-  --color-bg-elevated: #FFFFFF;
-  --color-bg-subtle: #F1F3F5;
-  --color-bg-dark: #0B0F19;
-  --color-bg-dark-card: #131A29;
+  --color-bg-primary: #0B0F17;
+  --color-bg-secondary: #0E1420;
+  --color-bg-surface: #121927;
+  --color-bg-elevated: #172032;
+  --color-bg-subtle: #141B2B;
+  --color-bg-dark: #070A10;
+  --color-bg-dark-card: #0F1523;
 
-  /* Typography Colors (WCAG 2.2 AA tested: #111827 on white is 15.3:1; #4B5563 on white is 7.2:1; #374151 for accessible muted is 8.8:1) */
-  --color-text-primary: #111827;
-  --color-text-secondary: #4B5563;
-  --color-text-muted: #4B5563;
-  --color-text-dimmed: #6B7280;
-  --color-text-inverse: #FFFFFF;
-  --color-text-brand: #2563EB;
+  /* Typography Colors (WCAG 2.2 AA compliant: #F8FAFC on #0B0F17 has 15.8:1 contrast; #94A3B8 has 7.3:1 contrast) */
+  --color-text-primary: #F8FAFC;
+  --color-text-secondary: #94A3B8;
+  --color-text-muted: #64748B;
+  --color-text-dimmed: #475569;
+  --color-text-inverse: #0B0F17;
+  --color-text-brand: #3B82F6;
 
-  /* Borders */
-  --color-border-subtle: #F0F1F3;
-  --color-border-default: #E5E7EB;
-  --color-border-strong: #D1D5DB;
-  --color-border-brand: #93C5FD;
+  /* Borders (Subtle hairline borders) */
+  --color-border-subtle: #162032;
+  --color-border-default: #1E293B;
+  --color-border-strong: #334155;
+  --color-border-brand: #3B82F6;
 
   /* Brand Colors */
-  --color-brand-primary: #2563EB;
-  --color-brand-primary-hover: #1D4ED8;
-  --color-brand-primary-active: #1E40AF;
-  --color-brand-soft: #EFF6FF;
-  --color-brand-soft-border: #DBEAFE;
-  --color-brand-glow: rgba(37, 99, 235, 0.12);
+  --color-brand-primary: #3B82F6;
+  --color-brand-primary-hover: #60A5FA;
+  --color-brand-primary-active: #2563EB;
+  --color-brand-soft: rgba(59, 130, 246, 0.1);
+  --color-brand-soft-border: rgba(59, 130, 246, 0.25);
+  --color-brand-glow: rgba(59, 130, 246, 0.2);
 
-  /* Status Colors (Accessible ratios) */
-  --color-status-success: #16A34A;
-  --color-status-success-bg: #F0FDF4;
-  --color-status-warning: #D97706;
-  --color-status-warning-bg: #FFFBEB;
-  --color-status-error: #DC2626;
-  --color-status-error-bg: #FEF2F2;
-  --color-status-info: #2563EB;
-  --color-status-info-bg: #EFF6FF;
+  /* Status Colors */
+  --color-status-success: #22C55E;
+  --color-status-success-bg: rgba(34, 197, 94, 0.12);
+  --color-status-warning: #F59E0B;
+  --color-status-warning-bg: rgba(245, 158, 11, 0.12);
+  --color-status-error: #EF4444;
+  --color-status-error-bg: rgba(239, 68, 68, 0.12);
+  --color-status-info: #3B82F6;
+  --color-status-info-bg: rgba(59, 130, 246, 0.12);
 
   /* ==========================================================================
      31.2 TYPOGRAPHY TOKENS

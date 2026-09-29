@@ -1,44 +1,91 @@
+/* ==========================================================================
+   Final CTA Section — Editorial Closing Section
+   ========================================================================== */
 .final-cta-section {
+  padding: 104px 0 112px 0;
   background-color: var(--color-bg-primary);
-  border-bottom: 1px solid var(--color-border-subtle);
-  padding: var(--section-padding-desktop);
+  position: relative;
 }
 
 .final-cta-card {
-  background-color: var(--color-bg-secondary);
+  position: relative;
+  background-color: #0E1422;
   border: 1px solid var(--color-border-default);
   border-radius: var(--radius-xl);
-  padding: var(--space-16) var(--space-8);
+  padding: 64px 48px;
   text-align: center;
+  overflow: hidden;
+  box-shadow: 0 24px 60px -12px rgba(0, 0, 0, 0.7);
+}
+
+.final-cta-grid-lines {
+  position: absolute;
+  inset: 0;
+  background-size: 48px 48px;
+  background-image: 
+    linear-gradient(to right, rgba(30, 41, 59, 0.35) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(30, 41, 59, 0.35) 1px, transparent 1px);
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.final-cta-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 480px;
+  height: 280px;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, rgba(14, 20, 34, 0) 70%);
+  filter: blur(40px);
+  pointer-events: none;
+}
+
+.final-cta-content {
+  max-width: 640px;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: relative;
-  overflow: hidden;
 }
 
 .final-cta-badge {
   display: inline-flex;
   align-items: center;
   gap: var(--space-2);
-  padding: 4px 12px;
-  background-color: var(--color-brand-soft);
-  color: var(--color-brand-primary);
-  border: 1px solid var(--color-brand-soft-border);
+  padding: 5px 12px;
+  background-color: rgba(30, 41, 59, 0.6);
+  border: 1px solid var(--color-border-default);
   border-radius: var(--radius-full);
-  font-size: 13px;
-  font-weight: 600;
-  margin-bottom: var(--space-4);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--color-brand-primary);
+  margin-bottom: var(--space-6);
+  text-transform: uppercase;
+}
+
+.cta-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 9999px;
+  background-color: var(--color-brand-primary);
+  box-shadow: 0 0 8px var(--color-brand-primary);
 }
 
 .final-cta-title {
+  color: #F8FAFC;
+  font-weight: 700;
+  letter-spacing: -0.03em;
   margin-bottom: var(--space-4);
-  max-width: 760px;
+  line-height: 1.15;
 }
 
 .final-cta-text {
+  color: var(--color-text-secondary);
+  font-size: 19px;
+  line-height: 1.6;
   margin-bottom: var(--space-8);
-  max-width: 580px;
 }
 
 .final-cta-actions {
@@ -47,17 +94,79 @@
   justify-content: center;
   gap: var(--space-4);
   flex-wrap: wrap;
+  margin-bottom: var(--space-8);
 }
 
-@media (max-width: 639px) {
-  .final-cta-card {
-    padding: var(--space-10) var(--space-4);
+.final-cta-primary {
+  box-shadow: 0 0 24px -4px rgba(59, 130, 246, 0.45);
+}
+
+.final-cta-primary .arrow-icon {
+  transition: transform var(--motion-duration-fast) var(--motion-ease-standard);
+}
+
+.final-cta-primary:hover .arrow-icon {
+  transform: translateX(3px);
+}
+
+.final-cta-secondary {
+  background-color: rgba(18, 25, 40, 0.7);
+  border: 1px solid var(--color-border-default);
+  color: #F8FAFC;
+}
+
+.final-cta-secondary:hover {
+  background-color: rgba(30, 41, 59, 0.9);
+  border-color: var(--color-border-strong);
+  color: #FFFFFF;
+}
+
+.final-cta-contact-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 13px;
+  color: var(--color-text-muted);
+  font-family: var(--font-family-primary);
+}
+
+.meta-separator {
+  color: var(--color-border-strong);
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .final-cta-section {
+    padding: 64px 0 72px 0;
   }
+
+  .final-cta-card {
+    padding: 40px 24px;
+  }
+
+  .final-cta-title {
+    font-size: 32px;
+  }
+
+  .final-cta-text {
+    font-size: 16px;
+  }
+
   .final-cta-actions {
     flex-direction: column;
     width: 100%;
   }
+
   .final-cta-actions .btn {
     width: 100%;
+  }
+
+  .final-cta-contact-meta {
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .meta-separator {
+    display: none;
   }
 }
